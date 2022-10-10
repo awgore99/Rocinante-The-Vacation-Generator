@@ -19,3 +19,19 @@ function startingSearch{
 
     }
 }
+
+function endingSearch{
+    let input = document.getElementById('endingSearch').value
+    input = input.charAt(0).toUpperCase() + input.slice(1);
+
+    for (i = 0; i < data.length; i++){
+        let startingLoc = data[i];
+
+        if (startingLoc.city.includes(input)){
+            localCities.push(input);
+            localStorage.setItem("cityArray", JSON.stringify(localCities));
+        }
+
+    }
+}
+
