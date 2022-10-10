@@ -12,44 +12,45 @@
     <script src="./JavaScript/Results.js"></script>
 </head>
 <body>
-    <section class="travelMethodsContainer">
-        <section class = "travelMethodsHeading">
-        <h2>How to get there:</h2>
+    <div class="uk-flex uk-flex-center">
+        <section class="travelMethodsContainer">
+            <div class="uk-card-default uk-card-hover uk-card-body uk-margin-top">
+                <section class = "travelMethodsHeading">
+                    <h2>How to get there:</h2>
+                </section>
+                    <section class="travelMethodsList">
+                        <ul class="uk-list uk-list-hyphen">
+                          <form>
+                            <input type = "radio" id = 'Fly' name = 'fav_method_of_transportation' value = 'Fly'>
+                            <label for="fly">Fly</label><br>
+                            <input type = "radio" id = 'Drive' name = 'fav_method_of_transportation' value = 'Drive'>
+                            <label for="drive">Drive</label><br>
+                            <input type = "radio" id = 'Train' name = 'fav_method_of_transportation' value = 'Train'>
+                            <label for="train">Train</label><br>
+                          </form>
+                        </ul>
+                    </section>
+            </div>
         </section>
-      <section class="travelMethodsList">
-        <form>
-          <input type = "radio" id = 'Fly' name = 'fav_method_of_transportation' value = 'Fly'>
-          <label for="fly">Fly</label><br>
-          <input type = "radio" id = 'Drive' name = 'fav_method_of_transportation' value = 'Drive'>
-          <label for="drive">Drive</label><br>
-          <input type = "radio" id = 'Train' name = 'fav_method_of_transportation' value = 'Train'>
-          <label for="train">Train</label><br>
-      </section>
-      </section>
     <section class="hotelsContainer">
         <section class = "hotelsHeading">
         <h2>Where to stay:</h2>
         </section>
-      <section class="hotelsList">
-        <ul>
-          <li id="hotelOptionOne"></li>
-          <li id="hotelOptionTwo"></li>
-          <li id="hotelOptionThree"></li>
-        </ul>
-      </section>
-      </section>
-    <section class="activitiesContainer">
-        <section class = "activitiesHeading">
-        <h2>What to do:</h2>
+        <section class="activitiesContainer">
+            <div class="uk-card-default uk-card-hover uk-card-body uk-margin-top uk-margin-left">
+                <section class = "activitiesHeading">
+                    <h2>What to do:</h2>
+                </section>
+                    <section class="activitiesList">
+                        <ul class="uk-list uk-list-hyphen">
+                          <li id="activityOptionOne">Option 1</li>
+                          <li id="activityOptionTwo">Option 2</li>
+                          <li id="activityOptionThree">Option 3</li>
+                        </ul>
+                    </section>
+            </div>
         </section>
-      <section class="activitiesList">
-        <ul>
-          <li id="activityOptionOne"></li>
-          <li id="activityOptionTwo"></li>
-          <li id="activityOptionThree"></li>
-        </ul>
-      </section>
-      </section>
+    </div>
     
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
