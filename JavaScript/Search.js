@@ -7,14 +7,17 @@
 
 function startingSearch{
     let input = document.getElementById('startingSearch').value
-    input = input.charAt(0).toUpperCase() + input.slice(1);
+    input = input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
 
     for (i = 0; i < data.length; i++){
         let startingLoc = data[i];
 
         if (startingLoc.city.includes(input)){
-            localCities.push(input);
-            localStorage.setItem("cityArray", JSON.stringify(localCities));
+            localStartingCity.push(input);
+            localStorage.setItem("cityArray", JSON.stringify(localStartingCity));
+        }
+        else{
+            window.alert("City does not exist, please try again");
         }
 
     }
@@ -22,14 +25,17 @@ function startingSearch{
 
 function endingSearch{
     let input = document.getElementById('endingSearch').value
-    input = input.charAt(0).toUpperCase() + input.slice(1);
+    input = input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
 
     for (i = 0; i < data.length; i++){
         let startingLoc = data[i];
 
         if (startingLoc.city.includes(input)){
-            localCities.push(input);
-            localStorage.setItem("cityArray", JSON.stringify(localCities));
+            localEndingCity.push(input);
+            localStorage.setItem("cityArray", JSON.stringify(localEndingCity));
+        }
+        else{
+            window.alert("City does not exist, please try again");
         }
 
     }
