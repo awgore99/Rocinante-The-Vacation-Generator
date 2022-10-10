@@ -13,44 +13,6 @@
 </head>
 <body>
 
-    <section class="travelMethodsContainer">
-        <section class = "travelMethodsHeading">
-        <h2>How to get there:</h2>
-        </section>
-      <section class="travelMethodsList">
-        <form>
-          <input type = "radio" id = 'Fly' name = 'fav_method_of_transportation' value = 'Fly'>
-          <label for="fly">Fly</label><br>
-          <input type = "radio" id = 'Drive' name = 'fav_method_of_transportation' value = 'Drive'>
-          <label for="drive">Drive</label><br>
-          <input type = "radio" id = 'Train' name = 'fav_method_of_transportation' value = 'Train'>
-          <label for="train">Train</label><br>
-      </section>
-      </section>
-    <section class="hotelsContainer">
-        <section class = "hotelsHeading">
-        <h2>Where to stay:</h2>
-        </section>
-      <section class="hotelsList">
-        <ul>
-          <li id="hotelOptionOne"></li>
-          <li id="hotelOptionTwo"></li>
-          <li id="hotelOptionThree"></li>
-        </ul>
-      </section>
-      </section>
-    <section class="activitiesContainer">
-        <section class = "activitiesHeading">
-        <h2>What to do:</h2>
-        </section>
-      <section class="activitiesList">
-        <ul>
-          <li id="activityOptionOne"></li>
-          <li id="activityOptionTwo"></li>
-          <li id="activityOptionThree"></li>
-        </ul>
-      </section>
-      </section>
     <div class="uk-flex uk-flex-center">
         <section class="travelMethodsContainer">
             <div class="uk-card-default uk-card-hover uk-card-body uk-margin-top">
@@ -58,7 +20,7 @@
                     <h2>How to get there:</h2>
                 </section>
                     <section class="travelMethodsList">
-                        <ul class="uk-list uk-list-hyphen">
+                        <ul>
                           <form>
                             <input type = "radio" id = 'Fly' name = 'fav_method_of_transportation' value = 'Fly'>
                             <label for="fly">Fly</label><br>
@@ -71,12 +33,28 @@
                     </section>
             </div>
         </section>
-    <section class="hotelsContainer">
-        <section class = "hotelsHeading">
-        <h2>Where to stay:</h2>
+    </div>
+
+    <div class="uk-flex uk-flex-center">
+        <section class="hotelsContainer">
+            <div class="uk-card-default uk-card-hover uk-card-body uk-margin-left uk-margin-top">
+                <section class = "hotelsHeading">
+                    <h2>Where to stay:</h2>
+                </section>
+                    <section class="hotelsList">
+                        <ul class="uk-list uk-list-hyphen">
+                          <li id="hotelOptionOne">Option 1</li>
+                          <li id="hotelOptionTwo">Option 2</li>
+                          <li id="hotelOptionThree">Option 3</li>
+                        </ul>
+                    </section>
+            </div>
         </section>
+    </div>
+
+    <div class="uk-flex uk-flex-center">
         <section class="activitiesContainer">
-            <div class="uk-card-default uk-card-hover uk-card-body uk-margin-top uk-margin-left">
+            <div class="uk-card-default uk-card-hover uk-card-body uk-margin-left uk-margin-top">
                 <section class = "activitiesHeading">
                     <h2>What to do:</h2>
                 </section>
