@@ -30,6 +30,7 @@ function getAirportApi(){
             
         })
         .catch(err => console.error(err));
+        window.location.href = 'https://awgore99.github.io/Rocinante-The-Vacation-Generator/Selections.html';
         
     }
 
