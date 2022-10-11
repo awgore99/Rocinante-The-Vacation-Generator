@@ -46,3 +46,5 @@ fetch(getWeatherStatus, options)
     })
 	.catch(err => console.error(err));
 ​
+
+
