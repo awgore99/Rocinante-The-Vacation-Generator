@@ -1,3 +1,10 @@
+body{
+    font-family: 'Laila', sans-serif;
+}
+
+h1{
+    font-family: 'Neucha', cursive;
+}
 
 #resultsSubmitButton {
     width: 50px;
