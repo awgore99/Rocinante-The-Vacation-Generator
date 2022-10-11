@@ -10,13 +10,22 @@ var inputStartingCity = document.getElementById("inputStartingCity");
 ​
 var inputEndingCity = document.getElementById("inputEndingCity");
 
+
+var inputEndingCity = document.getElementById('endingSearch');
+
+
 var startingAirportContainer = document.getElementById("startingAirport");
+
 
 var endingAirportContainer = document.getElementById("endingAirport");
 
 ​var ​hotelContainer = document.getElementById("hotel");
 
+
+var fetchButton = document.querySelector('#searchSubmitButton');
+
 ​var ​flightContainer = document.getElementById("flight");
+
 
 ​var ​activityContainer = document.getElementById("activity");
 
@@ -74,6 +83,14 @@ var getStartingAirportStatus = "https://world-airports-directory.p.rapidapi.com/
 ​
 fetch(getStartingAirportStatus, options)
 	.then(response => response.json())
+
+    .then(function(dataAirport){
+        console.log(dataAirport);
+        for (var i=0; i<dataAirport.length; i++){
+            searchFunction();
+            var airportStatus = document.createElement("h3");
+            var airportStatus = document.createElement("p");
+
     .then(function(dataStartingAirport){
         console.log(dataStartingAirport);
         for (var i=0; i<dataStartingAirport.length; i++){
@@ -82,6 +99,7 @@ fetch(getStartingAirportStatus, options)
             var startingAirportCode = document.createElement("p");
             var startingAirportLat = document.createElement("p");
             var startingAirportLong = document.createElement("p");
+
             
             startingAirportName.textContent = dataStartingAirport[i].results[0].AirportName;
             startingAirportCode.textContent = dataStartingAirport[i].results[0].AirportCode;
@@ -96,8 +114,12 @@ fetch(getStartingAirportStatus, options)
         }
     })
 	.catch(err => console.error(err));
+    window.location.href = 'https://awgore99.github.io/Rocinante-The-Vacation-Generator/Selections.html';
 }
 
+
+
+function searchFunction(){
 
 // Ending Airport API
 // https://rapidapi.com/karanp41-eRiF1pYLK1P/api/world-airports-directory/
@@ -260,6 +282,7 @@ function endingSearch(){
 }
 
 function startingSearch(){
+
     let input = document.getElementById('startingSearch').value
     input = input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
 
@@ -268,7 +291,22 @@ function startingSearch(){
 
         if (startingLoc.city.includes(input)){
             localStartingCity.push(input);
-            localStorage.setItem("cityArray", JSON.stringify(localStartingCity));
+            localStorage.setItem("startingCity", JSON.stringify(localStartingCity));
+            let endingInput = inputEndingCity;
+            endingInput = endingInput.charAt(0).toUpperCase() + endingInput.slice(1).toLowerCase();
+
+            for (i = 0; i < data.length; i++){
+                let endingLoc = data[i];
+
+                if (startingLoc.city.includes(endingInput)){
+                    localEndingCity.push(endingInput);
+                    localStorage.setItem("endingCity", JSON.stringify(localEndingCity));
+                }
+                else{
+                    window.alert("City does not exist, please try again");
+                }
+
+            }   
         }
         else{
             window.alert("City does not exist, please try again");
@@ -276,4 +314,10 @@ function startingSearch(){
 
     }
 }
+
+
+
+fetchButton.addEventListener('click', getAirportApi);
+
 fetchButton.addEventListener('click', startingSearch, endingSearch, getHotelApi, getFlightApi, getStartingAirportApi, getEndingAirportApi, getTransitApi, getActivityApi, );
+
