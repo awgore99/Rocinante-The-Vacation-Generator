@@ -57,7 +57,7 @@ function getHotelApi(){
         })
         .catch(err => console.error(err));
 }
-fetchButton.addEventListener('click', getHotelApi);
+
 
 
 // StartingAirport API
@@ -97,7 +97,6 @@ fetch(getStartingAirportStatus, options)
     })
 	.catch(err => console.error(err));
 }
-fetchButton.addEventListener('click', getAirportApi); 
 
 
 // Ending Airport API
@@ -135,7 +134,6 @@ function getStartingAirportApi(){
         })
         .catch(err => console.error(err));
     }
-    fetchButton.addEventListener('click', getAirportApi); 
 
 // Flight API
 // https://rapidapi.com/DataCrawler/api/tripadvisor16
@@ -170,7 +168,6 @@ function getFlightApi(){
         })
         .catch(err => console.error(err));
 }
-fetchButton.addEventListener('click', getFlightApi) 
 
 
 // Activity API 
@@ -205,7 +202,6 @@ fetch('https://travel-places.p.rapidapi.com/', options)
     })
     .catch(err => console.error(err));
 }
-fetchButton.addEventListener('click', getActivityApi) 
 
 
 // Transit API
@@ -243,7 +239,6 @@ fetch(getTransitStatus, options)
     })
     .catch(err => console.error(err));
 }
-fetchButton.addEventListener('click', getTransitApi); 
 
 
 function endingSearch(){
@@ -281,5 +276,4 @@ function startingSearch(){
 
     }
 }
-
-fetchButton.addEventListener('click', startingSearch, endingSearch, getAirportApi);
+fetchButton.addEventListener('click', startingSearch, endingSearch, getHotelApi, getFlightApi, getStartingAirportApi, getEndingAirportApi, getTransitApi, getActivityApi, );
