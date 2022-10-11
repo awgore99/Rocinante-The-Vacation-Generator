@@ -11,10 +11,7 @@
 
 // Weather API
 // https://rapidapi.com/weatherapi/api/weatherapi-com/
-startingCity = 'Austin';
-console.log(startingCity);
-endingCity = 'Chicago';
-console.log(endingCity);
+
 
 
 
@@ -53,8 +50,12 @@ function getHotelApi(){
         }
     };
     
+
+    fetch('https://world-airports-directory.p.rapidapi.com/v1/airports?page=1&sortBy=name%3Aasc&limit=20', options)
+
     var getHotelStatus = "https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=${inputEndingCity}&search_type=HOTEL";
     fetch(getHotelStatus, options)
+
         .then(response => response.json())
         .then(function(dataHotel){
             console.log(dataHotel);
