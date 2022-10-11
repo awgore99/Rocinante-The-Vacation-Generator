@@ -8,6 +8,7 @@
 
 // Assign starting and ending city input
 var inputEndingCity = document.getElementById('endingSearch');
+var inputStartingCity = document.getElementById('startingSearch');
 
 var fetchButton = document.querySelector('#searchSubmitButton');
 
@@ -17,58 +18,33 @@ function getAirportApi(){
     var options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
-            'X-RapidAPI-Host': 'world-airports-directory.p.rapidapi.com'
+            'X-RapidAPI-Key': '46e7505e3dmsh6a226f5ed56d4e4p148738jsnfd3fe16a8db6',
+            'X-RapidAPI-Host': 'airports-by-api-ninjas.p.rapidapi.com'
         }
     };
-    var getEndingAirportStatus = "https://world-airports-directory.p.rapidapi.com/v1/airports/"+ inputEndingCity + "?page=1&limit=20&sortBy=AirportName%3Aasc";
-    fetch(getEndingAirportStatus, options)
+    fetch('https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=' + inputEndingCity.value, options)
         .then(response => response.json())
         .then(function(dataEndingAirport){
-            searchFunction();
+            searchFunction(dataEndingAirport);
             console.log(dataEndingAirport);
-            for (var i=0; i<dataEndingAirport.length; i++){
-                
-                var endingAirportName = document.createElement("h3");
-                var endingAirportCode = document.createElement("p");
-                var endingAirportLat = document.createElement("p");
-                var endingAirportLong = document.createElement("p");
-                
-                endingAirportName.textContent = dataEndingAirport[i].results[0].AirportName;
-                endingAirportCode.textContent = dataEndingAirport[i].results[0].AirportCode;
-                endingAirportLat.textContent = dataEndingAirport[i].results[0].lat;
-                endingAirportLong.textContent = dataEndingAirport[i].results[0].long;
             
-                endingAirportContainer.append(endingAirportName);
-                endingAirportContainer.append(endingAirportCode);
-                endingAirportContainer.append(endingAirportLat);
-                endingAirportContainer.append(endingAirportLong);   
-            }
         })
         .catch(err => console.error(err));
-        window.location.href = 'https://awgore99.github.io/Rocinante-The-Vacation-Generator/Selections.html';
+        
     }
 
-function searchFunction(){
-
-    let input = document.getElementById('startingSearch').value
-    input = input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
+function searchFunction(data){
 
     for (i = 0; i < data.length; i++){
         let startingLoc = data[i];
-
-        if (startingLoc.city.includes(input)){
-            localStartingCity.push(input);
-            localStorage.setItem("startingCity", JSON.stringify(localStartingCity));
-            let endingInput = inputEndingCity;
-            endingInput = endingInput.charAt(0).toUpperCase() + endingInput.slice(1).toLowerCase();
-
+        if (startingLoc){
+            localStartingCity = inputStartingCity.value;
+            console.log(localStartingCity)
             for (i = 0; i < data.length; i++){
                 let endingLoc = data[i];
-
-                if (startingLoc.city.includes(endingInput)){
-                    localEndingCity.push(endingInput);
-                    localStorage.setItem("endingCity", JSON.stringify(localEndingCity));
+                if (endingLoc){
+                    localEndingCity = inputEndingCity.value;
+                    console.log(localEndingCity)
                 }
                 else{
                     window.alert("City does not exist, please try again");
