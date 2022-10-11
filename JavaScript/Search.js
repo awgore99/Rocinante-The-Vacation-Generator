@@ -1,3 +1,4 @@
+
 // Assign local variables to search.html using ID's
 // Take in API info using fetch and .then
 //      using getElementID for the input from the user and querySelector to append the input to an array
@@ -314,6 +315,9 @@ function startingSearch(){
 
     }
 }
+
+fetchButton.addEventListener('click', startingSearch, endingSearch,  );
+
 
 
 
