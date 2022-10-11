@@ -11,10 +11,9 @@
 
 // Weather API
 // https://rapidapi.com/weatherapi/api/weatherapi-com/
-​
-startingCity = localStorage.getItem('startingCity');
+startingCity = 'Austin';
 console.log(startingCity);
-endingCity = localStorage.getItem('endingCity');
+endingCity = 'Chicago';
 console.log(endingCity);
 
 
@@ -22,29 +21,28 @@ console.log(endingCity);
 var weatherContainer = document.getElementById("weather")
 // Assign starting and ending city input
 var inputStartingCity = document.getElementById("inputStartingCity");
-​
 var inputEndingCity = document.getElementById("inputEndingCity");
 
 var startingAirportContainer = document.getElementById("startingAirport");
 
 var endingAirportContainer = document.getElementById("endingAirport");
 
-​var ​hotelContainer = document.getElementById("hotel");
+var hotelContainer = document.getElementById("hotel");
 
-​var ​flightContainer = document.getElementById("flight");
+var flightContainer = document.getElementById("flight");
 
-​var ​activityContainer = document.getElementById("activity");
+var activityContainer = document.getElementById("activity");
 
-​var ​transitContainer = document.getElementById("transit");
+var transitContainer = document.getElementById("transit");
 
 var fetchButton = document.getElementById("fetch-button");
-​
+
 
 
 
 // Hotel API
 // https://rapidapi.com/tipsters/api/priceline-com-provider/
-​
+
 function getHotelApi(){
    
    var options = {
@@ -88,7 +86,7 @@ var options = {
 	}
 };
 var getStartingAirportStatus = "https://world-airports-directory.p.rapidapi.com/v1/airports/"+ inputStartingCity+ "?page=1&limit=20&sortBy=AirportName%3Aasc";
-​
+
 fetch(getStartingAirportStatus, options)
 	.then(response => response.json())
     .then(function(dataStartingAirport){
@@ -105,18 +103,18 @@ fetch(getStartingAirportStatus, options)
             startingAirportLat.textContent = dataStartingAirport[i].results[0].lat;
             startingAirportLong.textContent = dataStartingAirport[i].results[0].long;
 
-​
+
             startingAirportContainer.append(startingAirportName);
             startingAirportContainer.append(startingAirportCode);
             startingAirportContainer.append(startingAirportLat);
             startingAirportContainer.append(startingAirportLong);
 
-​
+
         }
     })
 	.catch(err => console.error(err));
 }
-​
+
 
 
 // Ending Airport API
@@ -130,7 +128,7 @@ function getStartingAirportApi(){
         }
     };
     var getEndingAirportStatus = "https://world-airports-directory.p.rapidapi.com/v1/airports/"+ inputEndingCity + "?page=1&limit=20&sortBy=AirportName%3Aasc";
-    ​
+    
     fetch(getEndingAirportStatus, options)
         .then(response => response.json())
         .then(function(dataEndingAirport){
@@ -146,16 +144,16 @@ function getStartingAirportApi(){
                 endingAirportCode.textContent = dataEndingAirport[i].results[0].AirportCode;
                 endingAirportLat.textContent = dataEndingAirport[i].results[0].lat;
                 endingAirportLong.textContent = dataEndingAirport[i].results[0].long;
-                ​
+                
                 endingAirportContainer.append(endingAirportName);
                 endingAirportContainer.append(endingAirportCode);
                 endingAirportContainer.append(endingAirportLat);
-                endingAirportContainer.append(endingAirportLong);    ​
+                endingAirportContainer.append(endingAirportLong);    
             }
         })
         .catch(err => console.error(err));
     }
-    ​
+    
 
 
 
