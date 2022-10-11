@@ -53,7 +53,7 @@ function getHotelApi(){
         }
     };
     
-    var getHotelStatus = "https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=" + inputEndingCity + "&search_type=HOTEL";
+    var getHotelStatus = "https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=${inputEndingCity}&search_type=HOTEL";
     fetch(getHotelStatus, options)
         .then(response => response.json())
         .then(function(dataHotel){
@@ -85,7 +85,7 @@ var options = {
 		'X-RapidAPI-Host': 'world-airports-directory.p.rapidapi.com'
 	}
 };
-var getStartingAirportStatus = "https://world-airports-directory.p.rapidapi.com/v1/airports/"+ inputStartingCity+ "?page=1&limit=20&sortBy=AirportName%3Aasc";
+var getStartingAirportStatus = "https://world-airports-directory.p.rapidapi.com/v1/airports/${inputStartingCity}?page=1&limit=20&sortBy=AirportName%3Aasc";
 
 fetch(getStartingAirportStatus, options)
 	.then(response => response.json())
@@ -127,7 +127,7 @@ function getStartingAirportApi(){
             'X-RapidAPI-Host': 'world-airports-directory.p.rapidapi.com'
         }
     };
-    var getEndingAirportStatus = "https://world-airports-directory.p.rapidapi.com/v1/airports/"+ inputEndingCity + "?page=1&limit=20&sortBy=AirportName%3Aasc";
+    var getEndingAirportStatus = "https://world-airports-directory.p.rapidapi.com/v1/airports/${inputEndingCity}?page=1&limit=20&sortBy=AirportName%3Aasc";
     
     fetch(getEndingAirportStatus, options)
         .then(response => response.json())
@@ -184,7 +184,7 @@ function getFlightApi(){
 
 // How assign time to current time (var timeNow) and +7 days (var timeNow_)
 
-    var getFlightStatus = "https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=" + startingAirportContainer[1] + "&destinationAirportCode=" + endingAirportContainer[1] + "&date=" + timeNow + "&itineraryType=ONE_WAY&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=ECONOMY&returnDate="+ timeNow_ + "&currencyCode=USD";
+    var getFlightStatus = "https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=${startingAirportContainer[1]}&destinationAirportCode=${endingAirportContainer[1]}&date=${timeNow}&itineraryType=ONE_WAY&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=ECONOMY&returnDate=${timeNow}&currencyCode=USD";
     fetch(getFlightStatus, options)
         .then(response => response.json())
         .then(function(dataFlight){
@@ -196,10 +196,9 @@ function getFlightApi(){
                 
                 flightDepartureTime.textContent = dataFlight[i].data.flights[i].segments[0].legs[0].departureDateTime;
                 flightNumber.textContent = dataFlight[i].data.flights[i].segments[0].legs[0].flightNumber;
-    ​
                 flightContainer.append(flightDepartureTime);
                 flightContainer.append(flightNumber);
-    ​
+
             }
         })
         .catch(err => console.error(err));
@@ -253,10 +252,8 @@ fetch('https://travel-places.p.rapidapi.com/', options)
             
             activityName.textContent = dataActivity[i].data.getPlaces[i].name;
             activityTag.textContent = dataActivity[i].data.getPlaces[i].categories;
-​
             activityContainer.append(activityName);
             activityContainer.append(activityTag);
-​
         }
     })
     .catch(err => console.error(err));
@@ -292,7 +289,7 @@ var options = {
 	}
 };
 
-var getTransitStatus = "https://multimodal-trip-planner.p.rapidapi.com/v1/routing?waypoints=" + startingAirportContainer[2] + "%2C" + startingAirportContainer[3] + "%7C" + endingAirportContainer[2] + "%2C" + endingAirportContainer[3] +"&mode=transit";
+var getTransitStatus = "https://multimodal-trip-planner.p.rapidapi.com/v1/routing?waypoints=${startingAirportContainer[2]}%2C${startingAirportContainer[3]}%7C${endingAirportContainer[2]}%2C${endingAirportContainer[3]}&mode=transit";
 
 fetch(getTransitStatus, options)
 	.then(response => response.json())
@@ -307,12 +304,9 @@ fetch(getTransitStatus, options)
             transitMode.textContent = dataTransit[i].feature[0].properties.mode;
             transitTime.textContent = dataTransit[i].feature[0].properties.time;
             transitDistance.textContent = dataTransit[i].feature[0].properties.distance;
-
-​
             transitContainer.append(transitMode);
             transitContainer.append(transitTime);
             transitContainer.append(transitDistance)
-​
         }
     })
     .catch(err => console.error(err));
@@ -322,9 +316,7 @@ fetch(getTransitStatus, options)
 
 
 
-​
-function getWeatherApi(){
-​var options = {
+function getWeatherApi() {var options = {
 	method: 'GET',
 	headers: {
 		'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
@@ -332,7 +324,7 @@ function getWeatherApi(){
     }
 };    
 var getWeatherStatus = "https://weatherapi-com.p.rapidapi.com/current.json?q=" + inputEndingCity;
-​
+
 fetch(getWeatherStatus, options)
 	.then(response => response.json())
 	.then(function(dataWeather){
@@ -344,11 +336,8 @@ fetch(getWeatherStatus, options)
             
             weatherStatus.textContent = dataWeather[i].Condition.text;
             weatherIcon.textContent = dataWeather[i].Condition.icon;
-​
             weatherContainer.append(weatherStatus);
             weatherContainer.append(weatherIcon);
-​
         }
     })
-	.catch(err => console.error(err));
-​}
+	.catch(err => console.error(err));}
