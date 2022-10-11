@@ -5,15 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search</title>
+    <link href="https://fonts.googleapis.com/css2?family=Laila&family=Neucha&family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/css/uikit.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.10/dist/js/uikit-icons.min.js"></script>
     <link rel="stylesheet" href="./CSS/style.css"/>
 </head>
 <body>
-    <div class="uk-height-large uk-flex uk-flex-center uk-flex-middle uk-background-cover" data-src="https://images.pexels.com/photos/1125774/pexels-photo-1125774.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" uk-img>
-        <h1>Page Header</h1>
-      </div>
+    <div class="uk-height-large uk-flex uk-background-cover" data-src="https://images.pexels.com/photos/1125774/pexels-photo-1125774.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" uk-img>
+        <h1 class="uk-position-small uk-heading-xsmall uk-flex-left">Rocinante: The Vacation Generator</h1>
+        <div class="uk-position-small uk-position-top-right">
+            <img src="./images/Rocinante-transparent-bg.png" width="150" height="150">
+        </div>
+        <h1 class="uk-heading uk-flex uk-flex-center uk-flex-middle">Let Us Plan Your Next Vacation...</h1>
+    </div>
 
     <div class="uk-section">
         <div class="uk-container">
@@ -29,7 +34,7 @@
             <h1>Ending City</h1>
                 <form>
                     <input id = "endingSearch" type="text" placeholder="Enter a city" name="search"/> 
-                    <input class="uk-button uk-button-default" id = "searchSubmitButton" type="button"></input>
+                    <input class="uk-button uk-button-default" id = "searchSubmitButton" type="button" value="Search Here"></input>
                     <!-- <button type="submit" value="Submit request"><i class="fa fa-search"></i></button> -->
                     <!-- end of form -->
                 </form>
