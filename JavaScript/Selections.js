@@ -12,6 +12,13 @@
 // Weather API
 // https://rapidapi.com/weatherapi/api/weatherapi-com/
 ​
+startingCity = localStorage.getItem('startingCity');
+console.log(startingCity);
+endingCity = localStorage.getItem('endingCity');
+console.log(endingCity);
+
+
+
 var weatherContainer = document.getElementById("weather")
 var options = {
 	method: 'GET',
