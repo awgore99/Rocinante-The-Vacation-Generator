@@ -9,11 +9,11 @@
 // Assign starting and ending city input
 var inputEndingCity = document.getElementById('endingSearch');
 var inputStartingCity = document.getElementById('startingSearch');
-
+var tripLength = document.getElementbyID('lengthOfStay');
 var fetchButton = document.querySelector('#searchSubmitButton');
 
 // Ending Airport API
-// https://rapidapi.com/karanp41-eRiF1pYLK1P/api/world-airports-directory/
+// https://https://api-ninjas.com/api/airports
 function getAirportApi(){
     var options = {
         method: 'GET',
