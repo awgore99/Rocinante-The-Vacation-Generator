@@ -422,6 +422,20 @@ fetch(getWeatherStatus, options)
             weatherContainer.append(weatherStatus);
             weatherContainer.append(weatherIcon);
         }
+
     })
+
+
+    })
+
+	.catch(err => console.error(err));}
+
+
+	.catch(err => console.error(err));
+​}
+
+
+
 	.catch(err => console.error(err));
   }
+
