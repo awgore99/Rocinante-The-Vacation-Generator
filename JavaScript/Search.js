@@ -8,7 +8,7 @@
 // Assign starting and ending city input
 var inputEndingCity = document.getElementById('endingSearch');
 var inputStartingCity = document.getElementById('startingSearch');
-var tripLength = document.getElementbyID('lengthOfStay');
+var tripLength = document.getElementById('lengthOfStay');
 var fetchButton = document.querySelector('#searchSubmitButton');
 
 // Ending Airport API
@@ -99,6 +99,8 @@ var transitContainer = document.getElementById("transit");
 
 var fetchButton = document.getElementById("fetch-button");
 
+var hotelOptionOne = document.getElementById("hotelOptionOne");
+
 
 
 
@@ -116,7 +118,7 @@ function getHotelApi(){
     };
     
 
-    fetch('https://world-airports-directory.p.rapidapi.com/v1/airports?page=1&sortBy=name%3Aasc&limit=20', options)
+    // fetch('https://world-airports-directory.p.rapidapi.com/v1/airports?page=1&sortBy=name%3Aasc&limit=20', options)
 
     var getHotelStatus = "https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=${inputEndingCity}&search_type=HOTEL";
     fetch(getHotelStatus, options)
@@ -132,11 +134,11 @@ function getHotelApi(){
                 hotelName.textContent = dataHotel[i].itemName;
                 hotelAddress.textContent = dataHotel[i].address;
 
-                hotelContainer.append(hotelName);
+                hotelContainer.appendChild(hotelName);
                 hotelContainer.append(hotelAddress);
             }
         })
-        .catch(err => console.error(err));
+        // .catch(err => console.error(err));
 }
 
 getHotelApi();

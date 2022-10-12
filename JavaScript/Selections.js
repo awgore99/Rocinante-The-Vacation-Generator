@@ -351,6 +351,7 @@ fetch(getWeatherStatus, options)
             weatherContainer.append(weatherIcon);
 ​
         }
+<<<<<<< HEAD
     })
 <<<<<<< HEAD
 	.catch(err => console.error(err));}
@@ -359,3 +360,8 @@ fetch(getWeatherStatus, options)
 	.catch(err => console.error(err));
 ​}
 >>>>>>> 4e6ecccecbc4e8accbb77469ca0013c3830b7334
+=======
+    });
+	.catch(err => console.error(err));
+  }
+>>>>>>> 806961173db42e95de364495ad4f1c0760145b13
