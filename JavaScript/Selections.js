@@ -9,12 +9,15 @@
 //
 //take in all selections from the user into an array, using a "submit" button that also relocates the user to the final "results.html" page
 
+<<<<<<< HEAD
 // Weather API
 // https://rapidapi.com/weatherapi/api/weatherapi-com/
 startingCity = 'Austin';
 console.log(startingCity);
 endingCity = 'Chicago';
 console.log(endingCity);
+=======
+>>>>>>> edeea37ff9b679a34ba78cc26060c17c0ee14657
 
 
 
@@ -37,6 +40,11 @@ var transitContainer = document.getElementById("transit");
 
 var fetchButton = document.getElementById("fetch-button");
 
+var timeNow = moment().format(YYYY-MM-DD);   
+
+var timeNow_ = moment().add(1, 'days').format(YYYY-MM-DD); 
+
+
 
 
 
@@ -53,7 +61,7 @@ function getHotelApi(){
         }
     };
     
-    var getHotelStatus = "https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=" + inputEndingCity.value + "&search_type=HOTEL";
+    var getHotelStatus = `https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=${inputEndingCity.value}&search_type=HOTEL`;
     fetch(getHotelStatus, options)
         .then(response => response.json())
         .then(function(dataHotel){
@@ -73,6 +81,43 @@ function getHotelApi(){
         .catch(err => console.error(err));
 }
 
+<<<<<<< HEAD
+=======
+
+// Hotel Price API
+
+function getHotelPriceApi(){
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
+            'X-RapidAPI-Host': 'priceline-com-provider.p.rapidapi.com'
+        }
+    };
+    
+    fetch(`https://priceline-com-provider.p.rapidapi.com/v1/hotels/booking-details?date_checkout=${timeNow_}&date_checkin=${timeNow}&hotel_id=${hotelContainer[2].value}&rooms_number=1`, options)
+        .then(response => response.json())
+        .then(function(dataHotelPrice){
+            console.log(dataHotelPrice);
+            for (var i=0; i<dataHotelPrice.length; i++){
+                
+                var hotelPrice = document.createElement("p");
+                var hotelStar = document.createElement("p");
+                var hotelRating = document.createElement("p");                
+                
+                hotelPrice.textContent = dataHotel[i].bookings.offerPrice;
+                hotelStar.textContent = dataHotel[i].starRating;
+                hotelRating.textContent = dataHotel[i].overallGuestRating;
+
+                hotelContainer.append(hotelPrice);
+                hotelContainer.append(hotelStar);
+                hotelContainer.append(hotelRating);
+            }
+        })
+        .catch(err => console.error(err));
+}
+>>>>>>> edeea37ff9b679a34ba78cc26060c17c0ee14657
 
 
 // StartingAirport API
@@ -85,7 +130,7 @@ var options = {
 		'X-RapidAPI-Host': 'world-airports-directory.p.rapidapi.com'
 	}
 };
-var getStartingAirportStatus = "https://world-airports-directory.p.rapidapi.com/v1/airports/"+ inputStartingCity.value+ "?page=1&limit=20&sortBy=AirportName%3Aasc";
+var getStartingAirportStatus = `https://world-airports-directory.p.rapidapi.com/v1/airports/${inputStartingCity.value}?page=1&limit=20&sortBy=AirportName%3Aasc`;
 
 fetch(getStartingAirportStatus, options)
 	.then(response => response.json())
@@ -127,7 +172,7 @@ function getStartingAirportApi(){
             'X-RapidAPI-Host': 'world-airports-directory.p.rapidapi.com'
         }
     };
-    var getEndingAirportStatus = "https://world-airports-directory.p.rapidapi.com/v1/airports/"+ inputEndingCity.value + "?page=1&limit=20&sortBy=AirportName%3Aasc";
+    var getEndingAirportStatus = `https://world-airports-directory.p.rapidapi.com/v1/airports/${inputEndingCity.value}?page=1&limit=20&sortBy=AirportName%3Aasc`;
     
     fetch(getEndingAirportStatus, options)
         .then(response => response.json())
@@ -184,7 +229,7 @@ function getFlightApi(){
 
 // How assign time to current time (var timeNow) and +7 days (var timeNow_)
 
-    var getFlightStatus = "https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=" + startingAirportContainer[1].value + "&destinationAirportCode=" + endingAirportContainer[1].value + "&date=" + timeNow + "&itineraryType=ONE_WAY&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=ECONOMY&returnDate="+ timeNow_ + "&currencyCode=USD";
+    var getFlightStatus = `https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=${startingAirportContainer[1].value}&destinationAirportCode=${endingAirportContainer[1].value}&date=${timeNow}&itineraryType=ONE_WAY&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=ECONOMY&returnDate=${timeNow_}&currencyCode=USD`;
     fetch(getFlightStatus, options)
         .then(response => response.json())
         .then(function(dataFlight){
@@ -239,7 +284,7 @@ var options = {
 		'X-RapidAPI-Host': 'travel-places.p.rapidapi.com'
 	},
 
-	body: '{"query":"{ getPlaces(categories:[\"NATURE\"],lat:' + endingAirportContainer[2].value + ',lng:' + endingAirportContainer[3].value + ',maxDistMeters:50000) { name,lat,lng,abstract,distance,categories } }"}'
+	body: `{"query":"{ getPlaces(categories:[\"NATURE\"],lat:${endingAirportContainer[2].value},lng:${endingAirportContainer[3].value},maxDistMeters:50000) { name,lat,lng,abstract,distance,categories } }"}`
 };
 
 fetch('https://travel-places.p.rapidapi.com/', options)
@@ -277,7 +322,7 @@ var options = {
 	}
 };
 
-var getTransitStatus = "https://multimodal-trip-planner.p.rapidapi.com/v1/routing?waypoints=" + startingAirportContainer[2].value + "%2C" + startingAirportContainer[3].value + "%7C" + endingAirportContainer[2].value + "%2C" + endingAirportContainer[3].value +"&mode=transit";
+var getTransitStatus = `https://multimodal-trip-planner.p.rapidapi.com/v1/routing?waypoints=${startingAirportContainer[2].value}%2C${startingAirportContainer[3].value}%7C${endingAirportContainer[2].value}%2C${endingAirportContainer[3].value}&mode=transit`;
 
 fetch(getTransitStatus, options)
 	.then(response => response.json())
@@ -306,6 +351,45 @@ fetch(getTransitStatus, options)
 
 
 
+<<<<<<< HEAD
+=======
+function getDriveApi(){
+    var options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
+            'X-RapidAPI-Host': 'multimodal-trip-planner.p.rapidapi.com'
+        }
+    };
+    
+    var getDriveStatus = `https://multimodal-trip-planner.p.rapidapi.com/v1/routing?waypoints=${startingAirportContainer[2].value}%2C${startingAirportContainer[3].value}%7C${endingAirportContainer[2].value}%2C${endingAirportContainer[3].value}&mode=drive`;
+    
+    fetch(getDriveStatus, options)
+        .then(response => response.json())
+        .then(function(dataDrive){
+            console.log(dataDrive);
+            for (var i=0; i<dataDrive.length; i++){
+                
+                var driveMode = document.createElement("h3");
+                var driveTime = document.createElement("p");
+                var driveDistance = document.createElement("p")
+    
+                driveMode.textContent = dataDrive[i].feature[0].properties.mode;
+                driveTime.textContent = dataDrive[i].feature[0].properties.time;
+                driveDistance.textContent = dataDrive[i].feature[0].properties.distance;
+    
+                driveContainer.append(driveMode);
+                driveContainer.append(driveTime);
+                driveContainer.append(driveDistance)
+            }
+        })
+        .catch(err => console.error(err));
+    
+    }
+
+// Weather API
+// https://rapidapi.com/weatherapi/api/weatherapi-com/
+>>>>>>> edeea37ff9b679a34ba78cc26060c17c0ee14657
 
 function getWeatherApi(){
 var options = {
@@ -315,7 +399,11 @@ var options = {
 		'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
     }
 };    
+<<<<<<< HEAD
 var getWeatherStatus = "https://weatherapi-com.p.rapidapi.com/current.json?q=" + inputEndingCity.value;
+=======
+var getWeatherStatus = `https://weatherapi-com.p.rapidapi.com/current.json?q=${inputEndingCity.value}`;
+>>>>>>> edeea37ff9b679a34ba78cc26060c17c0ee14657
 
 fetch(getWeatherStatus, options)
 	.then(response => response.json())
@@ -334,5 +422,13 @@ fetch(getWeatherStatus, options)
 
         }
     })
+<<<<<<< HEAD
 	.catch(err => console.error(err));
 }
+=======
+    .catch(err => console.error(err));
+
+    }
+
+	
+>>>>>>> edeea37ff9b679a34ba78cc26060c17c0ee14657

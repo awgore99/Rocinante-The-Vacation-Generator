@@ -134,8 +134,10 @@ function getHotelApi(){
                 hotelName.textContent = dataHotel[i].itemName;
                 hotelAddress.textContent = dataHotel[i].address;
 
-                hotelContainer.appendChild(hotelName);
+                hotelContainer.append(hotelName);
                 hotelContainer.append(hotelAddress);
+
+                console.log(hotelName);
             }
         })
         // .catch(err => console.error(err));
