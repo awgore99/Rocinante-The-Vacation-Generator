@@ -59,7 +59,9 @@ function searchFunction(data){
     }
 }
 
-fetchButton.addEventListener('click', getAirportApi);
+if (window.location.href = 'https://awgore99.github.io/Rocinante-The-Vacation-Generator/Search.html'){
+    fetchButton.addEventListener('click', getAirportApi);
+}
 
 
 
@@ -119,8 +121,6 @@ function getHotelApi(){
     var getHotelStatus = "https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=" + inputEndingCity.value + "&search_type=HOTEL";
 
     // fetch('https://world-airports-directory.p.rapidapi.com/v1/airports?page=1&sortBy=name%3Aasc&limit=20', options)
-
-    var getHotelStatus = "https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=${inputEndingCity}&search_type=HOTEL";
 
     fetch(getHotelStatus, options)
 
