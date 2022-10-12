@@ -3,17 +3,36 @@
     --brown: #8F5406;
     --orange: #DB8514;
     --lightorange: #FFA530;
-    --blue: #1494DB;
-    --lightblue: #66c9ff;
+    --blue: #307ae9;
+    --grayblue: #5F84BE;
+    --light:#fffbf6;
 }
 
 body{
     font-family: 'Laila', sans-serif;
 }
 
-h1{
+h1 {
     font-family: 'Neucha', cursive;
     color: var(--darkbrown);
+}
+
+h2{
+    font-family: 'Neucha', cursive;
+    color: var(--darkbrown);
+}
+
+#results-h2{
+    font-family: 'Neucha', cursive;
+    color: var(--light);   
+    background-color: var(--grayblue);
+    border: solid 4px var(--darkbrown);
+}    
+
+h4{
+    font-family: 'Neucha', cursive;
+    color: var(--darkbrown);  
+    font-size: 30px;        
 }
 
 #header-text{
@@ -22,7 +41,7 @@ h1{
 
 #page-header{
     background-color: var(--blue);
-    background-image: linear-gradient(to bottom left, #1494DB, #FFA530);
+    background-image: linear-gradient(to bottom left, #307ae9, #FFA530);
 }
 
 #card{
@@ -33,8 +52,18 @@ h1{
 
 #resultsSubmitButton {
     background-color: var(--orange);
+    font-size: 20px; 
+    font-weight: bolder;
+    color: var(--darkbrown);
+    border: solid 4px var(--darkbrown);
+    font-family: 'Neucha', cursive;
 }
 
 #searchSubmitButton{
     background-color: var(--orange);
+    font-size: 20px; 
+    font-weight: bolder;
+    color: var(--darkbrown);
+    border: solid 4px var(--darkbrown);
+    font-family: 'Neucha', cursive;
 }

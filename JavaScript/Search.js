@@ -28,7 +28,6 @@ function getAirportApi(){
             console.log(dataEndingAirport);
             
         })
-        .catch(err => console.error(err));
         window.location.href = 'https://awgore99.github.io/Rocinante-The-Vacation-Generator/Selections.html';
         
     }
@@ -59,8 +58,6 @@ function searchFunction(data){
     }
 }
 
-fetchButton.addEventListener('click', getAirportApi);
-
 
 
 //Assign variables to IDs in selections.html
@@ -78,7 +75,9 @@ fetchButton.addEventListener('click', getAirportApi);
 // https://rapidapi.com/weatherapi/api/weatherapi-com/
 
 
-
+if (fetchButton){
+    fetchButton.addEventListener('click', getAirportApi);
+}
 
 var weatherContainer = document.getElementById("weather");
 // Assign starting and ending city input
@@ -93,7 +92,7 @@ var flightContainer = document.getElementById("flight");
 
 var activityContainer = document.getElementById("activity");
 
-var transitContainer = document.getElementById("transit");
+var transitContainer = document.getElementById("Drive");
 
 
 var hotelOptionOne = document.getElementById("hotelOptionOne");
@@ -120,8 +119,6 @@ function getHotelApi(){
 
     // fetch('https://world-airports-directory.p.rapidapi.com/v1/airports?page=1&sortBy=name%3Aasc&limit=20', options)
 
-    var getHotelStatus = "https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=${inputEndingCity}&search_type=HOTEL";
-
     fetch(getHotelStatus, options)
 
         .then(response => response.json())
@@ -135,8 +132,10 @@ function getHotelApi(){
                 hotelName.textContent = dataHotel[i].itemName;
                 hotelAddress.textContent = dataHotel[i].address;
 
-                hotelContainer.appendChild(hotelName);
+                hotelContainer.append(hotelName);
                 hotelContainer.append(hotelAddress);
+
+                console.log(hotelName);
             }
         })
         // .catch(err => console.error(err));
@@ -411,3 +410,12 @@ fetch(getWeatherStatus, options)
         }
     })
 	.catch(err => console.error(err));}
+
+function costToFly(length){
+    var distance = (length * 0.13) + 100;
+    console.log(distance);
+    return distance;
+}
+
+console.log(costToFly(transitContainer[2]););
+
