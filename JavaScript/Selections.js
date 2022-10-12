@@ -9,7 +9,8 @@
 //
 //take in all selections from the user into an array, using a "submit" button that also relocates the user to the final "results.html" page
 
-
+// Weather API
+// https://rapidapi.com/weatherapi/api/weatherapi-com/
 startingCity = 'Austin';
 console.log(startingCity);
 endingCity = 'Chicago';
@@ -17,10 +18,9 @@ console.log(endingCity);
 
 
 
-
+var weatherContainer = document.getElementById("weather")
 // Assign starting and ending city input
 var inputStartingCity = document.getElementById("inputStartingCity");
-
 var inputEndingCity = document.getElementById("inputEndingCity");
 
 var startingAirportContainer = document.getElementById("startingAirport");
@@ -29,17 +29,11 @@ var endingAirportContainer = document.getElementById("endingAirport");
 
 var hotelContainer = document.getElementById("hotel");
 
-var hotelPriceContainer = document.getElementById("hotelPrice");
-
 var flightContainer = document.getElementById("flight");
 
 var activityContainer = document.getElementById("activity");
 
 var transitContainer = document.getElementById("transit");
-
-var driveContainer = document.getElementById("drive");
-
-var weatherContainer = document.getElementById("weather");
 
 var fetchButton = document.getElementById("fetch-button");
 
@@ -66,7 +60,7 @@ function getHotelApi(){
             console.log(dataHotel);
             for (var i=0; i<dataHotel.length; i++){
                 
-                var hotelName = document.appendElement("ul");
+                var hotelName = document.appendElement("li");
                 var hotelAddress = document.createElement("p");
                 
                 hotelName.textContent = dataHotel[i].itemName;
@@ -79,40 +73,6 @@ function getHotelApi(){
         .catch(err => console.error(err));
 }
 
-// Hotel Price API
-getHotelApi();
-
-function getHotelPriceApi(){
-
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
-            'X-RapidAPI-Host': 'priceline-com-provider.p.rapidapi.com'
-        }
-    };
-    
-    fetch('https://priceline-com-provider.p.rapidapi.com/v1/hotels/booking-details?date_checkout='+ 2022-11-16 +'&date_checkin='+ 2022-11-15 +'&hotel_id=${hotelContainer[2].vale}&rooms_number=1', options)
-        .then(response => response.json())
-        .then(function(dataHotelPrice){
-            console.log(dataHotelPrice);
-            for (var i=0; i<dataHotelPrice.length; i++){
-                
-                var hotelPrice = document.createElement("p");
-                var hotelStar = document.createElement("p");
-                var hotelRating = document.createElement("p");                
-                
-                hotelPrice.textContent = dataHotel[i].bookings.offerPrice;
-                hotelStar.textContent = dataHotel[i].starRating;
-                hotelRating.textContent = dataHotel[i].overallGuestRating;
-
-                hotelContainer.append(hotelPrice);
-                hotelContainer.append(hotelStar);
-                hotelContainer.append(hotelRating);
-            }
-        })
-        .catch(err => console.error(err));
-}
 
 
 // StartingAirport API
@@ -239,6 +199,7 @@ function getFlightApi(){
     
                 flightContainer.append(flightDepartureTime);
                 flightContainer.append(flightNumber);
+    
             }
         })
         .catch(err => console.error(err));
@@ -295,26 +256,12 @@ fetch('https://travel-places.p.rapidapi.com/', options)
 
             activityContainer.append(activityName);
             activityContainer.append(activityTag);
+
         }
     })
     .catch(err => console.error(err));
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -346,6 +293,7 @@ fetch(getTransitStatus, options)
             transitTime.textContent = dataTransit[i].feature[0].properties.time;
             transitDistance.textContent = dataTransit[i].feature[0].properties.distance;
 
+
             transitContainer.append(transitMode);
             transitContainer.append(transitTime);
             transitContainer.append(transitDistance)
@@ -357,45 +305,7 @@ fetch(getTransitStatus, options)
 }
 
 
-// Drive API
-// https://rapidapi.com/geoapify-gmbh-geoapify/api/multimodal-trip-planner/
 
-function getDriveApi(){
-    var options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
-            'X-RapidAPI-Host': 'multimodal-trip-planner.p.rapidapi.com'
-        }
-    };
-    
-    var getDriveStatus = "https://multimodal-trip-planner.p.rapidapi.com/v1/routing?waypoints=${startingAirportContainer[2].value}%2C${startingAirportContainer[3].value}%7C${endingAirportContainer[2].value}%2C${endingAirportContainer[3].value&mode=drive";
-    
-    fetch(getDriveStatus, options)
-        .then(response => response.json())
-        .then(function(dataDrive){
-            console.log(dataDrive);
-            for (var i=0; i<dataDrive.length; i++){
-                
-                var driveMode = document.createElement("h3");
-                var driveTime = document.createElement("p");
-                var driveDistance = document.createElement("p")
-    
-                driveMode.textContent = dataDrive[i].feature[0].properties.mode;
-                driveTime.textContent = dataDrive[i].feature[0].properties.time;
-                driveDistance.textContent = dataDrive[i].feature[0].properties.distance;
-    
-                driveContainer.append(driveMode);
-                driveContainer.append(driveTime);
-                driveContainer.append(driveDistance)
-            }
-        })
-        .catch(err => console.error(err));
-    
-    }
-
-// Weather API
-// https://rapidapi.com/weatherapi/api/weatherapi-com/
 
 function getWeatherApi(){
 var options = {
@@ -405,7 +315,7 @@ var options = {
 		'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
     }
 };    
-var getWeatherStatus = "https://weatherapi-com.p.rapidapi.com/current.json?q=" + inputEndingCity;
+var getWeatherStatus = "https://weatherapi-com.p.rapidapi.com/current.json?q=" + inputEndingCity.value;
 
 fetch(getWeatherStatus, options)
 	.then(response => response.json())
@@ -421,21 +331,8 @@ fetch(getWeatherStatus, options)
 
             weatherContainer.append(weatherStatus);
             weatherContainer.append(weatherIcon);
+
         }
-
     })
-
-
-    })
-
-	.catch(err => console.error(err));}
-
-
 	.catch(err => console.error(err));
-​}
-
-
-
-	.catch(err => console.error(err));
-  }
-
+}
