@@ -9,14 +9,11 @@
 //
 //take in all selections from the user into an array, using a "submit" button that also relocates the user to the final "results.html" page
 
-<<<<<<< HEAD
 
 startingCity = 'Austin';
 console.log(startingCity);
 endingCity = 'Chicago';
 console.log(endingCity);
-=======
->>>>>>> edeea37ff9b679a34ba78cc26060c17c0ee14657
 
 
 
@@ -82,43 +79,6 @@ function getHotelApi(){
         .catch(err => console.error(err));
 }
 
-<<<<<<< HEAD
-=======
-
-// Hotel Price API
-
-function getHotelPriceApi(){
-
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
-            'X-RapidAPI-Host': 'priceline-com-provider.p.rapidapi.com'
-        }
-    };
-    
-    fetch(`https://priceline-com-provider.p.rapidapi.com/v1/hotels/booking-details?date_checkout=${timeNow_}&date_checkin=${timeNow}&hotel_id=${hotelContainer[2].value}&rooms_number=1`, options)
-        .then(response => response.json())
-        .then(function(dataHotelPrice){
-            console.log(dataHotelPrice);
-            for (var i=0; i<dataHotelPrice.length; i++){
-                
-                var hotelPrice = document.createElement("p");
-                var hotelStar = document.createElement("p");
-                var hotelRating = document.createElement("p");                
-                
-                hotelPrice.textContent = dataHotel[i].bookings.offerPrice;
-                hotelStar.textContent = dataHotel[i].starRating;
-                hotelRating.textContent = dataHotel[i].overallGuestRating;
-
-                hotelContainer.append(hotelPrice);
-                hotelContainer.append(hotelStar);
-                hotelContainer.append(hotelRating);
-            }
-        })
-        .catch(err => console.error(err));
-}
->>>>>>> edeea37ff9b679a34ba78cc26060c17c0ee14657
 
 
 // StartingAirport API

@@ -98,7 +98,10 @@ var hotelOptionOne = document.getElementById("hotelOptionOne");
 
 
 if(transitContainer){
-    console.log(getTransitApi());
+    console.log(getStartingAirportApi());
+    console.log(getEndingAirportApi());
+    console.log(getDistanceApi());
+    costToDrive(distanceContainer[0].value);
 }
 
 // Hotel API
@@ -142,7 +145,40 @@ function getHotelApi(){
         // .catch(err => console.error(err));
 }
 
+// Distance API
+// https://rapidapi.com/ApiOcean/api/distance-calculator
 
+function getDistanceApi(){
+
+    var options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
+            'X-RapidAPI-Host': 'distance-calculator.p.rapidapi.com'
+        }
+    };
+    
+    fetch(`https://distance-calculator.p.rapidapi.com/distance/simple?lat_1=${startingAirportContainer[2].value}&long_1=${startingAirportContainer[3]}&lat_2=${endingAirportContainer[2].value}&long_2=${endingAirportContainer[3].value}&unit=miles&decimal_places=2`, options)
+        .then(response => response.json())
+        .then(function(dataDistance){
+            console.log(dataDistance);
+            for (var i=0; i<dataDistance.length; i++){
+                
+                var distance = document.createElement("p");
+                var distanceUnit = document.createElement("p");
+                
+                distance.textContent = dataDistance[i].distance;
+                distanceUnit.textContent = dataDistance[i].unit;
+    
+                distanceContainer.append(distance);
+                distanceContainer.append(distanceUnit);
+    
+            }
+        })
+        .catch(err => console.error(err));
+
+}
 
 
 // StartingAirport API
@@ -189,7 +225,7 @@ fetch(getStartingAirportStatus, options)
 
 // Ending Airport API
 // https://rapidapi.com/karanp41-eRiF1pYLK1P/api/world-airports-directory/
-function getStartingAirportApi(){
+function getEndingAirportApi(){
     var options = {
         method: 'GET',
         headers: {
