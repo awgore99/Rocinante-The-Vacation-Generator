@@ -39,6 +39,11 @@ h4{
     font-size: 30px;
 }
 
+#list-text{
+    font-family: 'Laila', sans-serif;
+    color: var(--darkbrown);
+}
+
 #page-header{
     background-color: var(--blue);
     background-image: linear-gradient(to bottom left, #307ae9, #FFA530);
