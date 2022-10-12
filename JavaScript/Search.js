@@ -92,7 +92,7 @@ var flightContainer = document.getElementById("flight");
 
 var activityContainer = document.getElementById("activity");
 
-var transitContainer = document.getElementById("transit");
+var transitContainer = document.getElementById("Drive");
 
 
 var hotelOptionOne = document.getElementById("hotelOptionOne");
@@ -411,8 +411,11 @@ fetch(getWeatherStatus, options)
     })
 	.catch(err => console.error(err));}
 
+
 function costToFly(length){
     var distance = (length * 0.13) + 100;
     console.log(distance);
     return distance;
 }
+
+console.log(costToFly(transitContainer[2]););
