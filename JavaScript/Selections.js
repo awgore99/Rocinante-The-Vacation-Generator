@@ -15,7 +15,7 @@
 
 
 
-var weatherContainer = document.getElementById("weather")
+var weatherContainer = document.getElementById("weather");
 // Assign starting and ending city input
 var inputStartingCity = document.getElementById("inputStartingCity");
 var inputEndingCity = document.getElementById("inputEndingCity");
@@ -73,6 +73,8 @@ function getHotelApi(){
         })
         .catch(err => console.error(err));
 }
+
+getHotelApi();
 
 
 
@@ -342,3 +344,4 @@ fetch(getWeatherStatus, options)
         }
     })
 	.catch(err => console.error(err));}
+
