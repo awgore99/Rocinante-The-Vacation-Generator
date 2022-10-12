@@ -16,6 +16,10 @@ h1{
     color: var(--darkbrown);
 }
 
+#header-text{
+    font-size: 30px;
+}
+
 #page-header{
     background-color: var(--blue);
     background-image: linear-gradient(to bottom left, #1494DB, #FFA530);
@@ -24,13 +28,13 @@ h1{
 #card{
     height: auto;
     width: 250px;
-    border: dotted 2px var(--brown);
+    border: double 6px var(--brown);
 }
 
 #resultsSubmitButton {
-    width: 50px;
-    background-color: red;
-    border-radius: 50px;
-    height: 50px;
+    background-color: var(--orange);
 }
 
+#searchSubmitButton{
+    background-color: var(--orange);
+}
