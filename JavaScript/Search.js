@@ -411,7 +411,6 @@ fetch(getWeatherStatus, options)
     })
 	.catch(err => console.error(err));}
 
-
 function costToFly(length){
     var distance = (length * 0.13) + 100;
     console.log(distance);
@@ -419,3 +418,4 @@ function costToFly(length){
 }
 
 console.log(costToFly(transitContainer[2]););
+
