@@ -4,7 +4,6 @@
 //      rinse and repeat for the final destination
 // the submit button will take in the starting and ending locations into an array, and relocate to a 2nd screen
 
-
 // Assign starting and ending city input
 var inputEndingCity = document.getElementById('endingSearch');
 var inputStartingCity = document.getElementById('startingSearch');
@@ -98,7 +97,10 @@ var transitContainer = document.getElementById("Drive");
 var hotelOptionOne = document.getElementById("hotelOptionOne");
 
 
-
+if(transitContainer){
+    getTransitApi();
+    costToDrive(transitContainer[2].value);
+}
 
 // Hotel API
 // https://rapidapi.com/tipsters/api/priceline-com-provider/
@@ -384,7 +386,6 @@ fetch(getTransitStatus, options)
 
 
 
-
 function getWeatherApi() {var options = {
 	method: 'GET',
 	headers: {
@@ -417,5 +418,8 @@ function costToFly(length){
     return distance;
 }
 
-console.log(costToFly(transitContainer[2]););
+function costToDrive(length){
+    var driveDistance = length;
+    driveDistance = ((driveDistance/23)*3.3);
+}
 

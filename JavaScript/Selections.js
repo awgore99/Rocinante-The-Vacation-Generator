@@ -9,13 +9,21 @@
 //
 //take in all selections from the user into an array, using a "submit" button that also relocates the user to the final "results.html" page
 
+<<<<<<< HEAD
+// Weather API
+// https://rapidapi.com/weatherapi/api/weatherapi-com/
+startingCity = 'Austin';
+console.log(startingCity);
+endingCity = 'Chicago';
+console.log(endingCity);
+=======
+>>>>>>> edeea37ff9b679a34ba78cc26060c17c0ee14657
 
 
 
-
+var weatherContainer = document.getElementById("weather")
 // Assign starting and ending city input
 var inputStartingCity = document.getElementById("inputStartingCity");
-
 var inputEndingCity = document.getElementById("inputEndingCity");
 
 var startingAirportContainer = document.getElementById("startingAirport");
@@ -24,17 +32,11 @@ var endingAirportContainer = document.getElementById("endingAirport");
 
 var hotelContainer = document.getElementById("hotel");
 
-var hotelPriceContainer = document.getElementById("hotelPrice");
-
 var flightContainer = document.getElementById("flight");
 
 var activityContainer = document.getElementById("activity");
 
 var transitContainer = document.getElementById("transit");
-
-var driveContainer = document.getElementById("drive");
-
-var weatherContainer = document.getElementById("weather");
 
 var fetchButton = document.getElementById("fetch-button");
 
@@ -66,7 +68,7 @@ function getHotelApi(){
             console.log(dataHotel);
             for (var i=0; i<dataHotel.length; i++){
                 
-                var hotelName = document.appendElement("ul");
+                var hotelName = document.appendElement("li");
                 var hotelAddress = document.createElement("p");
                 
                 hotelName.textContent = dataHotel[i].itemName;
@@ -79,6 +81,8 @@ function getHotelApi(){
         .catch(err => console.error(err));
 }
 
+<<<<<<< HEAD
+=======
 
 // Hotel Price API
 
@@ -113,6 +117,7 @@ function getHotelPriceApi(){
         })
         .catch(err => console.error(err));
 }
+>>>>>>> edeea37ff9b679a34ba78cc26060c17c0ee14657
 
 
 // StartingAirport API
@@ -239,6 +244,7 @@ function getFlightApi(){
     
                 flightContainer.append(flightDepartureTime);
                 flightContainer.append(flightNumber);
+    
             }
         })
         .catch(err => console.error(err));
@@ -295,26 +301,12 @@ fetch('https://travel-places.p.rapidapi.com/', options)
 
             activityContainer.append(activityName);
             activityContainer.append(activityTag);
+
         }
     })
     .catch(err => console.error(err));
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -346,6 +338,7 @@ fetch(getTransitStatus, options)
             transitTime.textContent = dataTransit[i].feature[0].properties.time;
             transitDistance.textContent = dataTransit[i].feature[0].properties.distance;
 
+
             transitContainer.append(transitMode);
             transitContainer.append(transitTime);
             transitContainer.append(transitDistance)
@@ -357,9 +350,9 @@ fetch(getTransitStatus, options)
 }
 
 
-// Drive API
-// https://rapidapi.com/geoapify-gmbh-geoapify/api/multimodal-trip-planner/
 
+<<<<<<< HEAD
+=======
 function getDriveApi(){
     var options = {
         method: 'GET',
@@ -396,6 +389,7 @@ function getDriveApi(){
 
 // Weather API
 // https://rapidapi.com/weatherapi/api/weatherapi-com/
+>>>>>>> edeea37ff9b679a34ba78cc26060c17c0ee14657
 
 function getWeatherApi(){
 var options = {
@@ -405,7 +399,11 @@ var options = {
 		'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
     }
 };    
+<<<<<<< HEAD
+var getWeatherStatus = "https://weatherapi-com.p.rapidapi.com/current.json?q=" + inputEndingCity.value;
+=======
 var getWeatherStatus = `https://weatherapi-com.p.rapidapi.com/current.json?q=${inputEndingCity.value}`;
+>>>>>>> edeea37ff9b679a34ba78cc26060c17c0ee14657
 
 fetch(getWeatherStatus, options)
 	.then(response => response.json())
@@ -421,11 +419,16 @@ fetch(getWeatherStatus, options)
 
             weatherContainer.append(weatherStatus);
             weatherContainer.append(weatherIcon);
-        }
 
+        }
     })
+<<<<<<< HEAD
+	.catch(err => console.error(err));
+}
+=======
     .catch(err => console.error(err));
 
     }
 
 	
+>>>>>>> edeea37ff9b679a34ba78cc26060c17c0ee14657
