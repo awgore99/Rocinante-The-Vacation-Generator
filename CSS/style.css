@@ -4,7 +4,8 @@
     --orange: #DB8514;
     --lightorange: #FFA530;
     --blue: #307ae9;
-    --lightblue: #62a0fc;
+    --grayblue: #5F84BE;
+    --light:#fffbf6;
 }
 
 body{
@@ -18,8 +19,15 @@ h1 {
 
 h2{
     font-family: 'Neucha', cursive;
-    color: var(--darkbrown);   
+    color: var(--darkbrown);
 }
+
+#results-h2{
+    font-family: 'Neucha', cursive;
+    color: var(--light);   
+    background-color: var(--grayblue);
+    border: solid 4px var(--darkbrown);
+}    
 
 h4{
     font-family: 'Neucha', cursive;
@@ -44,8 +52,18 @@ h4{
 
 #resultsSubmitButton {
     background-color: var(--orange);
+    font-size: 20px; 
+    font-weight: bolder;
+    color: var(--darkbrown);
+    border: solid 4px var(--darkbrown);
+    font-family: 'Neucha', cursive;
 }
 
 #searchSubmitButton{
     background-color: var(--orange);
+    font-size: 20px; 
+    font-weight: bolder;
+    color: var(--darkbrown);
+    border: solid 4px var(--darkbrown);
+    font-family: 'Neucha', cursive;
 }
