@@ -1,4 +1,3 @@
-
 // Assign local variables to search.html using ID's
 // Take in API info using fetch and .then
 //      using getElementID for the input from the user and querySelector to append the input to an array
@@ -97,6 +96,8 @@ var activityContainer = document.getElementById("activity");
 var transitContainer = document.getElementById("transit");
 
 
+var hotelOptionOne = document.getElementById("hotelOptionOne");
+
 
 
 
@@ -114,7 +115,13 @@ function getHotelApi(){
     };
     
 
+
     var getHotelStatus = "https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=" + inputEndingCity.value + "&search_type=HOTEL";
+
+    // fetch('https://world-airports-directory.p.rapidapi.com/v1/airports?page=1&sortBy=name%3Aasc&limit=20', options)
+
+    var getHotelStatus = "https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=${inputEndingCity}&search_type=HOTEL";
+
     fetch(getHotelStatus, options)
 
         .then(response => response.json())
@@ -128,11 +135,11 @@ function getHotelApi(){
                 hotelName.textContent = dataHotel[i].itemName;
                 hotelAddress.textContent = dataHotel[i].address;
 
-                hotelContainer.append(hotelName);
+                hotelContainer.appendChild(hotelName);
                 hotelContainer.append(hotelAddress);
             }
         })
-        .catch(err => console.error(err));
+        // .catch(err => console.error(err));
 }
 
 
@@ -404,4 +411,3 @@ fetch(getWeatherStatus, options)
         }
     })
 	.catch(err => console.error(err));}
-
