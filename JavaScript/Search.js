@@ -92,7 +92,7 @@ var flightContainer = document.getElementById("flight");
 
 var activityContainer = document.getElementById("activity");
 
-var transitContainer = document.getElementById("transit");
+var transitContainer = document.getElementById("Drive");
 
 
 var hotelOptionOne = document.getElementById("hotelOptionOne");
@@ -132,8 +132,10 @@ function getHotelApi(){
                 hotelName.textContent = dataHotel[i].itemName;
                 hotelAddress.textContent = dataHotel[i].address;
 
-                hotelContainer.appendChild(hotelName);
+                hotelContainer.append(hotelName);
                 hotelContainer.append(hotelAddress);
+
+                console.log(hotelName);
             }
         })
         // .catch(err => console.error(err));
@@ -414,3 +416,6 @@ function costToFly(length){
     console.log(distance);
     return distance;
 }
+
+console.log(costToFly(transitContainer[2]););
+
