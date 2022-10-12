@@ -59,7 +59,7 @@ function searchFunction(data){
     }
 }
 
-if (window.location.href = 'https://awgore99.github.io/Rocinante-The-Vacation-Generator/Search.html'){
+if (document.getElementById('searchSubmitButton')){
     fetchButton.addEventListener('click', getAirportApi);
 }
 
