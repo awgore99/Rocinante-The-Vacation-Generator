@@ -134,8 +134,10 @@ function getHotelApi(){
                 hotelName.textContent = dataHotel[i].itemName;
                 hotelAddress.textContent = dataHotel[i].address;
 
-                hotelContainer.appendChild(hotelName);
+                hotelContainer.append(hotelName);
                 hotelContainer.append(hotelAddress);
+
+                console.log(hotelName);
             }
         })
         // .catch(err => console.error(err));
@@ -416,8 +418,12 @@ function costToFly(length){
     return distance;
 }
 
+
 function costToDrive(length){
     var driveDistance = length;
     driveDistance = ((driveDistance/23)*3.3);
 }
+
+console.log(costToFly(transitContainer[2]););
+
 
