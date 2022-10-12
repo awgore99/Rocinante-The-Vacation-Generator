@@ -82,8 +82,6 @@ fetchButton.addEventListener('click', getAirportApi);
 
 var weatherContainer = document.getElementById("weather");
 // Assign starting and ending city input
-var inputStartingCity = document.getElementById("inputStartingCity");
-var inputEndingCity = document.getElementById("inputEndingCity");
 
 var startingAirportContainer = document.getElementById("startingAirport");
 
@@ -97,7 +95,6 @@ var activityContainer = document.getElementById("activity");
 
 var transitContainer = document.getElementById("transit");
 
-var fetchButton = document.getElementById("fetch-button");
 
 var hotelOptionOne = document.getElementById("hotelOptionOne");
 
@@ -112,15 +109,19 @@ function getHotelApi(){
    var options = {
         method: 'GET',
         headers: {
-            'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
+            'X-RapidAPI-Key': '46e7505e3dmsh6a226f5ed56d4e4p148738jsnfd3fe16a8db6',
             'X-RapidAPI-Host': 'priceline-com-provider.p.rapidapi.com'
         }
     };
     
 
+
+    var getHotelStatus = "https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=" + inputEndingCity.value + "&search_type=HOTEL";
+
     // fetch('https://world-airports-directory.p.rapidapi.com/v1/airports?page=1&sortBy=name%3Aasc&limit=20', options)
 
     var getHotelStatus = "https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=${inputEndingCity}&search_type=HOTEL";
+
     fetch(getHotelStatus, options)
 
         .then(response => response.json())
@@ -143,7 +144,6 @@ function getHotelApi(){
         // .catch(err => console.error(err));
 }
 
-getHotelApi();
 
 
 

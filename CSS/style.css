@@ -1,15 +1,40 @@
+:root {
+    --darkbrown: #492c05;
+    --brown: #8F5406;
+    --orange: #DB8514;
+    --lightorange: #FFA530;
+    --blue: #1494DB;
+    --lightblue: #66c9ff;
+}
+
 body{
     font-family: 'Laila', sans-serif;
 }
 
 h1{
     font-family: 'Neucha', cursive;
+    color: var(--darkbrown);
+}
+
+#header-text{
+    font-size: 30px;
+}
+
+#page-header{
+    background-color: var(--blue);
+    background-image: linear-gradient(to bottom left, #1494DB, #FFA530);
+}
+
+#card{
+    height: auto;
+    width: 250px;
+    border: double 6px var(--brown);
 }
 
 #resultsSubmitButton {
-    width: 50px;
-    background-color: red;
-    border-radius: 50px;
-    height: 50px;
+    background-color: var(--orange);
 }
 
+#searchSubmitButton{
+    background-color: var(--orange);
+}
