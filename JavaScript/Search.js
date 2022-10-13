@@ -310,8 +310,16 @@ function getEndingAirportApi(){
 // Flight API
 // https://rapidapi.com/DataCrawler/api/tripadvisor16
 
-
 // function getFlightApi(){
+//     var options = {
+//         method: 'GET',
+//         headers: {
+//             'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
+//             'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
+//         }
+//     };
+
+// // function getFlightApi(){
 //     var options = {
 //         method: 'GET',
 //         headers: {
@@ -330,16 +338,16 @@ function getEndingAirportApi(){
 //                 var flightDepartureTime = document.createElement("h3");
 //                 var flightNumber = document.createElement("p");
                 
-//                 flightDepartureTime.textContent = dataFlight[i].data.flights[i].segments[0].legs[0].departureDateTime;
-//                 flightNumber.textContent = dataFlight[i].data.flights[i].segments[0].legs[0].flightNumber;
-//                 flightContainer.append(flightDepartureTime);
-//                 flightContainer.append(flightNumber);
+// //                 flightDepartureTime.textContent = dataFlight[i].data.flights[i].segments[0].legs[0].departureDateTime;
+// //                 flightNumber.textContent = dataFlight[i].data.flights[i].segments[0].legs[0].flightNumber;
+// //                 flightContainer.append(flightDepartureTime);
+// //                 flightContainer.append(flightNumber);
 
-//             }
-//         })
-//         .catch(err => console.error(err));
+// //             }
+// //         })
+// //         .catch(err => console.error(err));
 
-// }
+// // }
 
 
 
@@ -416,14 +424,14 @@ fetch('https://travel-places.p.rapidapi.com/', options)
 // Transit API
 // https://rapidapi.com/geoapify-gmbh-geoapify/api/multimodal-trip-planner/
 
-// function getTransitApi(){
-// var options = {
-// 	method: 'GET',
-// 	headers: {
-// 		'X-RapidAPI-Key': '46e7505e3dmsh6a226f5ed56d4e4p148738jsnfd3fe16a8db6',
-// 		'X-RapidAPI-Host': 'multimodal-trip-planner.p.rapidapi.com'
-// 	}
-// };
+// // function getTransitApi(){
+// // var options = {
+// // 	method: 'GET',
+// // 	headers: {
+// // 		'X-RapidAPI-Key': '46e7505e3dmsh6a226f5ed56d4e4p148738jsnfd3fe16a8db6',
+// // 		'X-RapidAPI-Host': 'multimodal-trip-planner.p.rapidapi.com'
+// // 	}
+// // };
 
 // var getTransitStatus = `https://multimodal-trip-planner.p.rapidapi.com/v1/routing?waypoints=${startingAirportContainer[2].value}%2C${startingAirportContainer[3].value}%7C${endingAirportContainer[2].value}%2C${endingAirportContainer[3].value}&mode=transit`;
 
@@ -437,17 +445,17 @@ fetch('https://travel-places.p.rapidapi.com/', options)
 //             var transitTime = document.createElement("p");
 //             var transitDistance = document.createElement("p")
 
-//             transitMode.textContent = dataTransit[i].feature[0].properties.mode;
-//             transitTime.textContent = dataTransit[i].feature[0].properties.time;
-//             transitDistance.textContent = dataTransit[i].feature[0].properties.distance;
-//             transitContainer.append(transitMode);
-//             transitContainer.append(transitTime);
-//             transitContainer.append(transitDistance)
-//         }
-//     })
-//     .catch(err => console.error(err));
+// //             transitMode.textContent = dataTransit[i].feature[0].properties.mode;
+// //             transitTime.textContent = dataTransit[i].feature[0].properties.time;
+// //             transitDistance.textContent = dataTransit[i].feature[0].properties.distance;
+// //             transitContainer.append(transitMode);
+// //             transitContainer.append(transitTime);
+// //             transitContainer.append(transitDistance)
+// //         }
+// //     })
+// //     .catch(err => console.error(err));
 
-// }
+// // }
 
 
 
