@@ -26,11 +26,11 @@ var activityOptionTwo = document.getElementById('activityOptionTwo');
 var activityOptionTwoCost = document.getElementById('activityOptionTwoCost');
 var activityOptionThree = document.getElementById('activityOptionThree');
 var activityOptionThreeCost = document.getElementById('activityOptionThreeCost');
-
+var endingCity = inputEndingCity.value;
 
 // Search Airport API
 // https://https://api-ninjas.com/api/airports
-function getAirportApi(){
+function getSearchAirportApi(){
     var options = {
         method: 'GET',
         headers: {
@@ -38,7 +38,7 @@ function getAirportApi(){
             'X-RapidAPI-Host': 'airports-by-api-ninjas.p.rapidapi.com'
         }
     };
-    fetch('https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=' + inputEndingCity.value, options)
+    fetch('https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=' + endingCity, options)
         .then(response => response.json())
         .then(function(dataEndingAirport){
             searchFunction(dataEndingAirport);
@@ -46,7 +46,7 @@ function getAirportApi(){
             
         })
         ;
-        
+        window.location.href = 'https://awgore99.github.io/Rocinante-The-Vacation-Generator/Selections.html';
     }
 
 function searchFunction(data){
@@ -93,7 +93,7 @@ function searchFunction(data){
 
 
 if (fetchButton){
-    fetchButton.addEventListener('click', getAirportApi);
+    fetchButton.addEventListener('click', getSearchAirportApi);
 }
 
 var weatherContainer = document.getElementById("weather");
@@ -202,11 +202,12 @@ function getDistanceApi(){
             }
         })
         .catch(err => console.error(err));
+        window.location.href
 
 }
 
 
-// StartingAirport API
+// Starting Airport API
 // https://rapidapi.com/karanp41-eRiF1pYLK1P/api/world-airports-directory/
 function getStartingAirportApi(){
     var options = {
@@ -216,7 +217,7 @@ function getStartingAirportApi(){
             'X-RapidAPI-Host': 'airports-by-api-ninjas.p.rapidapi.com'
         }
     };
-    fetch('https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=' + inputEndingCity.value, options)
+    fetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${endingCity}`, options)
 	    .then(response => response.json())
         .then(function(dataStartingAirport){
         console.log(dataStartingAirport);

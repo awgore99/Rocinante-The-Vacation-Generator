@@ -34,8 +34,6 @@ var activityContainer = document.getElementById("activity");
 
 var transitContainer = document.getElementById("transit");
 
-var hotelPriceContainer = document.getElementById("hotelPrice");
-
 var distanceContainer = document.getElementById("distance");
 
 var fetchButton = document.getElementById("fetch-button");
@@ -70,59 +68,17 @@ function getHotelApi(){
                 
                 var hotelName = document.appendElement("li");
                 var hotelAddress = document.createElement("p");
-                var hotelId = document.createElement("p");
                 
                 hotelName.textContent = dataHotel[i].itemName;
                 hotelAddress.textContent = dataHotel[i].address;
-                hotelId.textContent = dataHotel[i].id;
-
 
                 hotelContainer.append(hotelName);
                 hotelContainer.append(hotelAddress);
-                hotelContainer.append(hotelId);
             }
         })
         .catch(err => console.error(err));
 }
 
-
-// Hotel Price API
-// https://rapidapi.com/tipsters/api/priceline-com-provider/
-
-function getHotelPriceApi(){
-   
-    var options = {
-         method: 'GET',
-         headers: {
-             'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
-             'X-RapidAPI-Host': 'priceline-com-provider.p.rapidapi.com'
-         }
-     };
-     
-     var getHotelPrice = `https://priceline-com-provider.p.rapidapi.com/v1/hotels/booking-details?date_checkout=${timeNow_}&date_checkin=${timeNow}&hotel_id=${hotelContainer[2].value}&rooms_number=1`;
-     fetch(getHotelPrice, options)
-         .then(response => response.json())
-         .then(function(dataHotelPrice){
-             console.log(dataHotelPrice);
-             for (var i=0; i<dataHotelPrice.length; i++){
-                 
-                 var hotelPrice = document.appendElement("li");
-                 var hotelStar = document.createElement("p");
-                 var hotelRating = document.createElement("p");
-                 
-                 hotelPrice.textContent = dataHotelPrice[i].bookings.offerPrice;
-                 hotelStar.textContent = dataHotelPrice[i].starRating;
-                 hotelRating.textContent = dataHotel[i].overallGuestRating;
- 
- 
-                 hotelPriceContainer.append(hotelPrice);
-                 hotelPriceContainer.append(hotelStar);
-                 hotelPriceContainer.append(hotelRating);
-             }
-         })
-         .catch(err => console.error(err));
- }
- 
 
 
 // StartingAirport API
@@ -389,20 +345,16 @@ fetch(getTransitStatus, options)
 
 
 
-// Weather API
-// https://rapidapi.com/weatherapi/api/weatherapi-com/
-// >>>>>>> edeea37ff9b679a34ba78cc26060c17c0ee14657
 
 function getWeatherApi(){
 var options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': 'edeea37ff9b679a34ba78cc26060c17c0ee14657',
+		'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
 		'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
     }
 };    
-var getWeatherStatus = `https://weatherapi-com.p.rapidapi.com/current.json?q=${inputEndingCity.value}`;
-
+var getWeatherStatus = "https://weatherapi-com.p.rapidapi.com/current.json?q=" + inputEndingCity.value;
 
 fetch(getWeatherStatus, options)
 	.then(response => response.json())
