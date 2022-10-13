@@ -182,7 +182,7 @@ function getDistanceApi(){
         }
     };
     
-    fetch(`https://distance-calculator.p.rapidapi.com/distance/simple?lat_1=${startingAirportContainer[2].value}&long_1=${startingAirportContainer[3]}&lat_2=${endingAirportContainer[2].value}&long_2=${endingAirportContainer[3].value}&unit=miles&decimal_places=2`, options)
+    fetch(`https://distance-calculator.p.rapidapi.com/distance/simple?lat_1=${airportInfo[0][2]}&long_1=${airportInfo[0][3]}&lat_2=${airportInfo[1][2]}&long_2=${airportInfo[1][3]}&unit=miles&decimal_places=2`, options)
         .then(response => response.json())
         .then(function(dataDistance){
             console.log(dataDistance);
@@ -276,9 +276,13 @@ function getEndingAirportApi(){
                 var endingAirportLong = document.createElement("p");
                 
                 endingAirportName.textContent = dataEndingAirport[i].results[0].AirportName;
+                airportInfo[1].push(dataEndingAirport[i].results[0].AirportName);
                 endingAirportCode.textContent = dataEndingAirport[i].results[0].AirportCode;
+                airportInfo[1].push(dataEndingAirport[i].results[0].AirportCode);
                 endingAirportLat.textContent = dataEndingAirport[i].results[0].lat;
+                airportInfo[1].push(dataEndingAirport[i].results[0].lat);
                 endingAirportLong.textContent = dataEndingAirport[i].results[0].long;
+                airportInfo[1].push(dataEndingAirport[i].results[0].long);
                 
                 endingAirportContainer.append(endingAirportName);
                 endingAirportContainer.append(endingAirportCode);
@@ -308,6 +312,7 @@ function getEndingAirportApi(){
 // Flight API
 // https://rapidapi.com/DataCrawler/api/tripadvisor16
 
+
 // function getFlightApi(){
 //     var options = {
 //         method: 'GET',
@@ -317,15 +322,13 @@ function getEndingAirportApi(){
 //         }
 //     };
 
-// // How assign time to current time (var timeNow) and +7 days (var timeNow_)
-
 //     var getFlightStatus = "https://tripadvisor16.p.rapidapi.com/api/v1/flights/searchFlights?sourceAirportCode=${startingAirportContainer[1]}&destinationAirportCode=${endingAirportContainer[1]}&date=${timeNow}&itineraryType=ONE_WAY&sortOrder=PRICE&numAdults=1&numSeniors=0&classOfService=ECONOMY&returnDate=${timeNow}&currencyCode=USD";
 //     fetch(getFlightStatus, options)
 //         .then(response => response.json())
 //         .then(function(dataFlight){
 //             console.log(dataFlight);
 //             for (var i=0; i<dataFlight.length; i++){
-                
+             
 //                 var flightDepartureTime = document.createElement("h3");
 //                 var flightNumber = document.createElement("p");
                 
@@ -373,7 +376,7 @@ var options = {
 		'X-RapidAPI-Host': 'travel-places.p.rapidapi.com'
 	},
 
-	body: '{"query":"{ getPlaces(categories:[\"NATURE\"],lat:' + endingAirportContainer[2] + ',lng:' + endingAirportContainer[3] + ',maxDistMeters:50000) { name,lat,lng,abstract,distance,categories } }"}'
+	body: '{"query":"{ getPlaces(categories:[\"NATURE\"],lat:' + airportInfo[1][2] + ',lng:' + airportInfo[1][3] + ',maxDistMeters:50000) { name,lat,lng,abstract,distance,categories } }"}'
 };
 
 fetch('https://travel-places.p.rapidapi.com/', options)
@@ -431,7 +434,7 @@ fetch('https://travel-places.p.rapidapi.com/', options)
 //     .then(function(dataTransit){
 //         console.log(dataTransit);
 //         for (var i=0; i<dataTransit.length; i++){
-            
+         
 //             var transitMode = document.createElement("h3");
 //             var transitTime = document.createElement("p");
 //             var transitDistance = document.createElement("p")
@@ -457,7 +460,7 @@ function getWeatherApi() {var options = {
 		'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
     }
 };    
-var getWeatherStatus = "https://weatherapi-com.p.rapidapi.com/current.json?q=" + inputEndingCity;
+var getWeatherStatus = "https://weatherapi-com.p.rapidapi.com/current.json?q=" + inputEndingCity.value;
 
 fetch(getWeatherStatus, options)
 	.then(response => response.json())
