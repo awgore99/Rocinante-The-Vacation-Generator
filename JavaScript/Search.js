@@ -26,11 +26,6 @@ var activityOptionTwo = document.getElementById('activityOptionTwo');
 var activityOptionTwoCost = document.getElementById('activityOptionTwoCost');
 var activityOptionThree = document.getElementById('activityOptionThree');
 var activityOptionThreeCost = document.getElementById('activityOptionThreeCost');
-<<<<<<< HEAD
-
-
-=======
->>>>>>> main
 // Search Airport API
 // https://https://api-ninjas.com/api/airports
 function getSearchAirportApi(){
@@ -49,11 +44,7 @@ function getSearchAirportApi(){
             
         })
         ;
-<<<<<<< HEAD
-        
-=======
         window.location.href = "./Selections.html";
->>>>>>> main
     }
 
 function searchFunction(data){
@@ -219,12 +210,8 @@ function getDistanceApi(){
 
 // Starting Airport API
 // https://rapidapi.com/karanp41-eRiF1pYLK1P/api/world-airports-directory/
-<<<<<<< HEAD
-function getStartingAirportApi(){
-=======
 function getStartingAirportApi(startingCity){
     console.log(startingCity);
->>>>>>> main
     var options = {
         method: 'GET',
         headers: {
@@ -232,11 +219,7 @@ function getStartingAirportApi(startingCity){
             'X-RapidAPI-Host': 'airports-by-api-ninjas.p.rapidapi.com'
         }
     };
-<<<<<<< HEAD
-    fetch('https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=' + inputEndingCity.value, options)
-=======
     fetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${startingCity}`, options)
->>>>>>> main
 	    .then(response => response.json())
         .then(function(dataStartingAirport){
         console.log(dataStartingAirport);
