@@ -220,20 +220,22 @@ function getStartingAirportApi(startingCity){
         .then(function(response){
         console.log(response);
         for (var i=0; i<response.length; i++){
-            
+            if(response[i].iata != ""){
             var startingAirportName = document.createElement("h3");
             var startingAirportCode = document.createElement("p");
             var startingAirportLat = document.createElement("p");
             var startingAirportLong = document.createElement("p");
             
             startingAirportName.textContent = response[i].name;
-            airportInfo.push(response[i].name);
+            airportInfo[0] = (response[i].name);
             startingAirportCode.textContent = response[i].iata;
-            airportInfo.push(response[i].iata);
+            airportInfo[1] = (response[i].iata);
             startingAirportLat.textContent = response[i].latitude;
-            airportInfo.push(response[i].latitude);
+            airportInfo[2] = (response[i].latitude);
             startingAirportLong.textContent = response[i].longitude;
-            airportInfo.push(response[i].longitude);
+            airportInfo[3] = (response[i].longitude);
+            i = i + (response.length + 1);
+            }
 
 
             //startingAirportContainer.append(startingAirportName);
@@ -262,23 +264,23 @@ function getEndingAirportApi(endingCity){
   
     fetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${endingCity}`, options)
     .then(response => response.json())
-    .then(function(dataEndingAirport){
-    console.log(dataEndingAirport);
-    for (var i=0; i<dataEndingAirport.length; i++){
-        
+    .then(function(response){
+    console.log(response);
+    for (var i=0; i<response.length; i++){
+        if(response[i].iata != ""){
         var endingAirportName = document.createElement("h3");
         var endingAirportCode = document.createElement("p");
         var endingAirportLat = document.createElement("p");
         var endingAirportLong = document.createElement("p");
         
-        endingAirportName.textContent = dataEndingAirport[i].name.value;
-        airportInfo.push(dataEndingAirport[i].name.value);
-        endingAirportCode.textContent = dataEndingAirport[i].iata.value;
-        airportInfo.push(dataEndingAirport[i].iata.value);
-        endingAirportLat.textContent = dataEndingAirport[i].latitude.value;
-        airportInfo.push(dataEndingAirport[i].latitude.value);
-        endingAirportLong.textContent = dataEndingAirport[i].longitude.value;
-        airportInfo.push(dataEndingAirport[i].longitude.value);
+        endingAirportName.textContent = response[i].name;
+        airportInfo[4] = (response[i].name);
+        endingAirportCode.textContent = response[i].iata;
+        airportInfo[5] = (response[i].iata);
+        endingAirportLat.textContent = response[i].latitude;
+        airportInfo[6] = (response[i].latitude);
+        endingAirportLong.textContent = response[i].longitude;
+        airportInfo[7] = (response[i].longitude);
 
 
         //endingAirportContainer.append(endingAirportName);
@@ -287,6 +289,8 @@ function getEndingAirportApi(endingCity){
         //endingAirportContainer.append(endingAirportLong);
 
         console.log(airportInfo);
+        i = i + (response.length + 1);
+        }
     }
 })
 .catch(err => console.error(err));
