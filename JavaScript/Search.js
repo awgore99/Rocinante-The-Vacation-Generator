@@ -112,12 +112,17 @@ var transitContainer = document.getElementById("Drive");
 
 var hotelOptionOne = document.getElementById("hotelOptionOne");
 
+var airportInfo = [[],[]];
 
 if(transitContainer){
+    getStartingAirportApi()
     console.log(getStartingAirportApi());
+    getEndingAirportApi();
     console.log(getEndingAirportApi());
+    getDistanceApi();
     console.log(getDistanceApi());
     costToDrive(distanceContainer[0].value);
+    console.log(costToDrive);
 }
 
 // Hotel API
@@ -184,6 +189,8 @@ function getDistanceApi(){
                 var distance = document.createElement("p");
                 var distanceUnit = document.createElement("p");
                 
+
+
                 distance.textContent = dataDistance[i].distance;
                 distanceUnit.textContent = dataDistance[i].unit;
     
@@ -207,7 +214,7 @@ var options = {
 		'X-RapidAPI-Host': 'world-airports-directory.p.rapidapi.com'
 	}
 };
-var getStartingAirportStatus = "https://world-airports-directory.p.rapidapi.com/v1/airports/${inputStartingCity}?page=1&limit=20&sortBy=AirportName%3Aasc";
+var getStartingAirportStatus = `https://world-airports-directory.p.rapidapi.com/v1/airports/${inputStartingCity.value}?page=1&limit=20&sortBy=AirportName%3Aasc`;
 
 fetch(getStartingAirportStatus, options)
 	.then(response => response.json())
@@ -221,9 +228,13 @@ fetch(getStartingAirportStatus, options)
             var startingAirportLong = document.createElement("p");
             
             startingAirportName.textContent = dataStartingAirport[i].results[0].AirportName;
+            airportInfo[0].push(dataStartingAirport[i].results[0].AirportName);
             startingAirportCode.textContent = dataStartingAirport[i].results[0].AirportCode;
+            airportInfo[0].push(dataStartingAirport[i].results[0].AirportCode);
             startingAirportLat.textContent = dataStartingAirport[i].results[0].lat;
+            airportInfo[0].push(dataStartingAirport[i].results[0].lat);
             startingAirportLong.textContent = dataStartingAirport[i].results[0].long;
+            airportInfo[0].push(dataStartingAirport[i].results[0].long);
 
 
             startingAirportContainer.append(startingAirportName);
@@ -249,7 +260,7 @@ function getEndingAirportApi(){
             'X-RapidAPI-Host': 'world-airports-directory.p.rapidapi.com'
         }
     };
-    var getEndingAirportStatus = "https://world-airports-directory.p.rapidapi.com/v1/airports/${inputEndingCity}?page=1&limit=20&sortBy=AirportName%3Aasc";
+    var getEndingAirportStatus = `https://world-airports-directory.p.rapidapi.com/v1/airports/${inputEndingCity.value}?page=1&limit=20&sortBy=AirportName%3Aasc`;
     
     fetch(getEndingAirportStatus, options)
         .then(response => response.json())
