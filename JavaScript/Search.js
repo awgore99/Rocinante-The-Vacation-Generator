@@ -26,6 +26,7 @@ var activityOptionTwo = document.getElementById('activityOptionTwo');
 var activityOptionTwoCost = document.getElementById('activityOptionTwoCost');
 var activityOptionThree = document.getElementById('activityOptionThree');
 var activityOptionThreeCost = document.getElementById('activityOptionThreeCost');
+
 // Search Airport API
 // https://https://api-ninjas.com/api/airports
 function getSearchAirportApi(){
@@ -44,11 +45,12 @@ function getSearchAirportApi(){
             
         })
         ;
-        window.location.href = './Selections.html';
+
+        window.location.href = "./Selections.html";
     }
 
 function searchFunction(data){
-
+    console.log(data);
     for (i = 0; i < data.length; i++){
         let startingLoc = data[i];
         if (startingLoc){
@@ -77,14 +79,14 @@ function searchFunction(data){
 
 
 
-//Assign variables to IDs in selections.html
+//Assign variables to IDs in selections.html 
 //fetch and .then API's to search for information, taking in the aray of starting and endinglocations from search.js
 //      populate the leftmost container with flight options, drive cost, and train cost
 //          create a dropdown <select> menu for the user to select an option from one of these
 //      populate the center container with hotel and airbnb information
 //          create another dropdown <select> menu for the user to select housing accomidations
 //      populate the rightmost container with information on things to do in the area
-//          either a dropdown menu or checkboxes for the user to potentialy select multiple options
+//          either a dropdown menu or checkboxes for the user to potentialy select multiple options.
 //
 //take in all selections from the user into an array, using a "submit" button that also relocates the user to the final "results.html" page
 
@@ -209,7 +211,9 @@ function getDistanceApi(){
 
 // Starting Airport API
 // https://rapidapi.com/karanp41-eRiF1pYLK1P/api/world-airports-directory/
-function getStartingAirportApi(startingCityAirport){
+
+function getStartingAirportApi(startingCity){
+    console.log(startingCity);
     var options = {
         method: 'GET',
         headers: {
@@ -217,7 +221,7 @@ function getStartingAirportApi(startingCityAirport){
             'X-RapidAPI-Host': 'airports-by-api-ninjas.p.rapidapi.com'
         }
     };
-    fetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${startingCityAirport}`, options)
+    fetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${startingCity}`, options)
 	    .then(response => response.json())
         .then(function(dataStartingAirport){
         console.log(dataStartingAirport);
@@ -311,8 +315,16 @@ function getEndingAirportApi(endingCity){
 // Flight API
 // https://rapidapi.com/DataCrawler/api/tripadvisor16
 
-
 // function getFlightApi(){
+//     var options = {
+//         method: 'GET',
+//         headers: {
+//             'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
+//             'X-RapidAPI-Host': 'tripadvisor16.p.rapidapi.com'
+//         }
+//     };
+
+// // function getFlightApi(){
 //     var options = {
 //         method: 'GET',
 //         headers: {
@@ -331,16 +343,16 @@ function getEndingAirportApi(endingCity){
 //                 var flightDepartureTime = document.createElement("h3");
 //                 var flightNumber = document.createElement("p");
                 
-//                 flightDepartureTime.textContent = dataFlight[i].data.flights[i].segments[0].legs[0].departureDateTime;
-//                 flightNumber.textContent = dataFlight[i].data.flights[i].segments[0].legs[0].flightNumber;
-//                 flightContainer.append(flightDepartureTime);
-//                 flightContainer.append(flightNumber);
+// //                 flightDepartureTime.textContent = dataFlight[i].data.flights[i].segments[0].legs[0].departureDateTime;
+// //                 flightNumber.textContent = dataFlight[i].data.flights[i].segments[0].legs[0].flightNumber;
+// //                 flightContainer.append(flightDepartureTime);
+// //                 flightContainer.append(flightNumber);
 
-//             }
-//         })
-//         .catch(err => console.error(err));
+// //             }
+// //         })
+// //         .catch(err => console.error(err));
 
-// }
+// // }
 
 
 
@@ -417,14 +429,14 @@ fetch('https://travel-places.p.rapidapi.com/', options)
 // Transit API
 // https://rapidapi.com/geoapify-gmbh-geoapify/api/multimodal-trip-planner/
 
-// function getTransitApi(){
-// var options = {
-// 	method: 'GET',
-// 	headers: {
-// 		'X-RapidAPI-Key': '46e7505e3dmsh6a226f5ed56d4e4p148738jsnfd3fe16a8db6',
-// 		'X-RapidAPI-Host': 'multimodal-trip-planner.p.rapidapi.com'
-// 	}
-// };
+// // function getTransitApi(){
+// // var options = {
+// // 	method: 'GET',
+// // 	headers: {
+// // 		'X-RapidAPI-Key': '46e7505e3dmsh6a226f5ed56d4e4p148738jsnfd3fe16a8db6',
+// // 		'X-RapidAPI-Host': 'multimodal-trip-planner.p.rapidapi.com'
+// // 	}
+// // };
 
 // var getTransitStatus = `https://multimodal-trip-planner.p.rapidapi.com/v1/routing?waypoints=${startingAirportContainer[2].value}%2C${startingAirportContainer[3].value}%7C${endingAirportContainer[2].value}%2C${endingAirportContainer[3].value}&mode=transit`;
 
@@ -438,17 +450,17 @@ fetch('https://travel-places.p.rapidapi.com/', options)
 //             var transitTime = document.createElement("p");
 //             var transitDistance = document.createElement("p")
 
-//             transitMode.textContent = dataTransit[i].feature[0].properties.mode;
-//             transitTime.textContent = dataTransit[i].feature[0].properties.time;
-//             transitDistance.textContent = dataTransit[i].feature[0].properties.distance;
-//             transitContainer.append(transitMode);
-//             transitContainer.append(transitTime);
-//             transitContainer.append(transitDistance)
-//         }
-//     })
-//     .catch(err => console.error(err));
+// //             transitMode.textContent = dataTransit[i].feature[0].properties.mode;
+// //             transitTime.textContent = dataTransit[i].feature[0].properties.time;
+// //             transitDistance.textContent = dataTransit[i].feature[0].properties.distance;
+// //             transitContainer.append(transitMode);
+// //             transitContainer.append(transitTime);
+// //             transitContainer.append(transitDistance)
+// //         }
+// //     })
+// //     .catch(err => console.error(err));
 
-// }
+// // }
 
 
 
