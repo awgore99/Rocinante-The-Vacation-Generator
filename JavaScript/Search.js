@@ -12,6 +12,8 @@ var fetchButton = document.querySelector('#searchSubmitButton');
 
 var Fly = document.getElementById('Fly');
 var Drive = document.getElementById('Drive');
+var flyingCost = document.getElementById('flyingCost');
+var drivingCost = document.getElementById('drivingCost');
 var hotelOptionOne = document.getElementById('hotelOptionOne');
 var hotelOptionOneCost = document.getElementById('hotelOptionOneCost');
 var hotelOptionTwo = document.getElementById('hotelOptionTwo');
@@ -477,11 +479,12 @@ fetch(getWeatherStatus, options)
 function costToFly(length){
     var distance = (length * 0.13) + 100;
     console.log(distance);
+    flyingCost.append(distance);
     return distance;
 }
 
 function costToDrive(length){
-    var driveDistance = length;
-    driveDistance = ((driveDistance/23)*3.3);
+    var driveDistance = ((length/23)*3.3);
+    drivingCost.append(driveDistance);
 }
 
