@@ -28,7 +28,7 @@ var activityOptionThree = document.getElementById('activityOptionThree');
 var activityOptionThreeCost = document.getElementById('activityOptionThreeCost');
 
 
-// Ending Airport API
+// Search Airport API
 // https://https://api-ninjas.com/api/airports
 function getAirportApi(){
     var options = {
@@ -45,7 +45,7 @@ function getAirportApi(){
             console.log(dataEndingAirport);
             
         })
-        window.location.href = 'https://awgore99.github.io/Rocinante-The-Vacation-Generator/Selections.html';
+        ;
         
     }
 
@@ -209,18 +209,16 @@ function getDistanceApi(){
 // StartingAirport API
 // https://rapidapi.com/karanp41-eRiF1pYLK1P/api/world-airports-directory/
 function getStartingAirportApi(){
-var options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
-		'X-RapidAPI-Host': 'world-airports-directory.p.rapidapi.com'
-	}
-};
-var getStartingAirportStatus = `https://world-airports-directory.p.rapidapi.com/v1/airports/${inputStartingCity.value}?page=1&limit=20&sortBy=AirportName%3Aasc`;
-
-fetch(getStartingAirportStatus, options)
-	.then(response => response.json())
-    .then(function(dataStartingAirport){
+    var options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '46e7505e3dmsh6a226f5ed56d4e4p148738jsnfd3fe16a8db6',
+            'X-RapidAPI-Host': 'airports-by-api-ninjas.p.rapidapi.com'
+        }
+    };
+    fetch('https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=' + inputEndingCity.value, options)
+	    .then(response => response.json())
+        .then(function(dataStartingAirport){
         console.log(dataStartingAirport);
         for (var i=0; i<dataStartingAirport.length; i++){
             
@@ -229,14 +227,14 @@ fetch(getStartingAirportStatus, options)
             var startingAirportLat = document.createElement("p");
             var startingAirportLong = document.createElement("p");
             
-            startingAirportName.textContent = dataStartingAirport[i].results[0].AirportName;
-            airportInfo[0].push(dataStartingAirport[i].results[0].AirportName);
-            startingAirportCode.textContent = dataStartingAirport[i].results[0].AirportCode;
-            airportInfo[0].push(dataStartingAirport[i].results[0].AirportCode);
-            startingAirportLat.textContent = dataStartingAirport[i].results[0].lat;
-            airportInfo[0].push(dataStartingAirport[i].results[0].lat);
-            startingAirportLong.textContent = dataStartingAirport[i].results[0].long;
-            airportInfo[0].push(dataStartingAirport[i].results[0].long);
+            startingAirportName.textContent = dataStartingAirport[i].Object[0].name;
+            airportInfo[0].push(dataStartingAirport[i].Object[0].name);
+            startingAirportCode.textContent = dataStartingAirport[i].Object[0].iata;
+            airportInfo[0].push(dataStartingAirport[i].Object[0].iata);
+            startingAirportLat.textContent = dataStartingAirport[i].Object[0].latitude;
+            airportInfo[0].push(dataStartingAirport[i].Object[0].latitude);
+            startingAirportLong.textContent = dataStartingAirport[i].Object[0].longitude;
+            airportInfo[0].push(dataStartingAirport[i].Object[0].longitude);
 
 
             startingAirportContainer.append(startingAirportName);
