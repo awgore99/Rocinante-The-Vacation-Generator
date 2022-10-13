@@ -215,7 +215,7 @@ function getStartingAirportApi(){
             'X-RapidAPI-Host': 'airports-by-api-ninjas.p.rapidapi.com'
         }
     };
-    fetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${inputEndingCity.value}`, options)
+    fetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${inputEndingCity.value()}`, options)
 	    .then(response => response.json())
         .then(function(dataStartingAirport){
         console.log(dataStartingAirport);
