@@ -118,7 +118,7 @@ var airportInfo = [[],[]];
 
 if(transitContainer){
     getStartingAirportApi(localStorage.getItem('startingCity'));
-    console.log(getStartingAirportApi());
+    console.log(getStartingAirportApi(localStorage.getItem('startingCity')));
     localStorage.getItem('endingCity');
     getEndingAirportApi();
     console.log(getEndingAirportApi());
