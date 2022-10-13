@@ -10,6 +10,22 @@ var inputStartingCity = document.getElementById('startingSearch');
 var tripLength = document.getElementById('lengthOfStay');
 var fetchButton = document.querySelector('#searchSubmitButton');
 
+var Fly = document.getElementById('Fly');
+var Drive = document.getElementById('Drive');
+var hotelOptionOne = document.getElementById('hotelOptionOne');
+var hotelOptionOneCost = document.getElementById('hotelOptionOneCost');
+var hotelOptionTwo = document.getElementById('hotelOptionTwo');
+var hotelOptionTwoCost = document.getElementById('hotelOptionTwoCost');
+var hotelOptionThree = document.getElementById('hotelOptionThree');
+var hotelOptionThreeCost = document.getElementById('hotelOptionThreeCost');
+var activityOptionOne = document.getElementById('activityOptionOne');
+var activityOptionOneCost = document.getElementById('activityOptionOneCost');
+var activityOptionTwo = document.getElementById('activityOptionTwo');
+var activityOptionTwoCost = document.getElementById('activityOptionTwoCost');
+var activityOptionThree = document.getElementById('activityOptionThree');
+var activityOptionThreeCost = document.getElementById('activityOptionThreeCost');
+
+
 // Ending Airport API
 // https://https://api-ninjas.com/api/airports
 function getAirportApi(){
