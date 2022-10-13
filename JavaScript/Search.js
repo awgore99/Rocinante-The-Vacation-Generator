@@ -117,8 +117,7 @@ var hotelOptionOne = document.getElementById("hotelOptionOne");
 var airportInfo = [[],[]];
 
 if(transitContainer){
-    localStorage.getItem('startingCity');
-    getStartingAirportApi(startingCity)
+    getStartingAirportApi(localStorage.getItem('startingCity'));
     console.log(getStartingAirportApi());
     localStorage.getItem('endingCity');
     getEndingAirportApi();
