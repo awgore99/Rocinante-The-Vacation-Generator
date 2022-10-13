@@ -115,6 +115,7 @@ var activityContainer = document.getElementById("activity");
 
 var transitContainer = document.getElementById("Drive");
 
+var distanceContainer = document.getElementById("distance")
 
 var hotelOptionOne = document.getElementById("hotelOptionOne");
 
@@ -143,14 +144,8 @@ function getHotelApi(){
             'X-RapidAPI-Host': 'priceline-com-provider.p.rapidapi.com'
         }
     };
-    
 
-
-    var getHotelStatus = "https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=$" + inputEndingCity.value + "&search_type=HOTEL";
-
-    // fetch('https://world-airports-directory.p.rapidapi.com/v1/airports?page=1&sortBy=name%3Aasc&limit=20', options)
-
-    fetch(getHotelStatus, options)
+    fetch(`https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=${inputEndingCity.value}&search_type=HOTEL`, options)
 
         .then(response => response.json())
         .then(function(dataHotel){
@@ -160,8 +155,8 @@ function getHotelApi(){
                 var hotelName = document.createElement("h3");
                 var hotelAddress = document.createElement("p");
                 
-                hotelName.textContent = dataHotel[i].itemName;
-                hotelAddress.textContent = dataHotel[i].address;
+                hotelName.textContent = dataHotel[i].object[i].itemName;
+                hotelAddress.textContent = dataHotel[i].object[i].address;
 
                 hotelContainer.append(hotelName);
                 hotelContainer.append(hotelAddress);
@@ -268,15 +263,18 @@ function getEndingAirportApi(endingCity){
             'X-RapidAPI-Host': 'airports-by-api-ninjas.p.rapidapi.com'
         }
     };
-    fetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${endingCity}`, options)
+  
+    fetchfetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${endingCity}`, options)
     .then(response => response.json())
     .then(function(dataEndingAirport){
-    console.log(dataEndingAirport);
+   
     for (var i=0; i<dataEndingAirport.length; i++){
+        
         var endingAirportName = document.createElement("h3");
         var endingAirportCode = document.createElement("p");
         var endingAirportLat = document.createElement("p");
         var endingAirportLong = document.createElement("p");
+        
         endingAirportName.textContent = dataEndingAirport[i].Object[0].name;
         airportInfo[0].push(dataEndingAirport[i].Object[0].name);
         endingAirportCode.textContent = dataEndingAirport[i].Object[0].iata;
@@ -285,15 +283,18 @@ function getEndingAirportApi(endingCity){
         airportInfo[0].push(dataEndingAirport[i].Object[0].latitude);
         endingAirportLong.textContent = dataEndingAirport[i].Object[0].longitude;
         airportInfo[0].push(dataEndingAirport[i].Object[0].longitude);
+
+
         endingAirportContainer.append(endingAirportName);
         endingAirportContainer.append(endingAirportCode);
         endingAirportContainer.append(endingAirportLat);
         endingAirportContainer.append(endingAirportLong);
+
+
     }
 })
-    .catch(err => console.error(err));
+.catch(err => console.error(err));
 }
-
     
 
 
@@ -386,7 +387,7 @@ var options = {
 		'X-RapidAPI-Host': 'travel-places.p.rapidapi.com'
 	},
 
-	body: '{"query":"{ getPlaces(categories:[\"NATURE\"],lat:' + airportInfo[1][2] + ',lng:' + airportInfo[1][3] + ',maxDistMeters:50000) { name,lat,lng,abstract,distance,categories } }"}'
+	body: `{"query":"{ getPlaces(categories:[\"NATURE\"],lat:${airportInfo[1][2]},lng:${airportInfo[1][3]},maxDistMeters:50000) { name,lat,lng,abstract,distance,categories } }"}`
 };
 
 fetch('https://travel-places.p.rapidapi.com/', options)
@@ -399,7 +400,7 @@ fetch('https://travel-places.p.rapidapi.com/', options)
             var activityTag = document.createElement("p");
             
             activityName.textContent = dataActivity[i].data.getPlaces[i].name;
-            activityTag.textContent = dataActivity[i].data.getPlaces[i].categories;
+            activityTag.textContent = dataActivity[i].data.getPlaces[i].categories.object[i];
             activityContainer.append(activityName);
             activityContainer.append(activityTag);
         }
@@ -463,16 +464,16 @@ fetch('https://travel-places.p.rapidapi.com/', options)
 
 
 
-function getWeatherApi() {var options = {
+function getWeatherApi() {
+    var options = {
 	method: 'GET',
 	headers: {
 		'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
 		'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
     }
 };    
-var getWeatherStatus = "https://weatherapi-com.p.rapidapi.com/current.json?q=" + inputEndingCity.value;
 
-fetch(getWeatherStatus, options)
+fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${inputEndingCity.value}`, options)
 	.then(response => response.json())
 	.then(function(dataWeather){
         console.log(dataWeather);
