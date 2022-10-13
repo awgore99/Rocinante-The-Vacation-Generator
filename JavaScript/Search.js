@@ -26,8 +26,6 @@ var activityOptionTwo = document.getElementById('activityOptionTwo');
 var activityOptionTwoCost = document.getElementById('activityOptionTwoCost');
 var activityOptionThree = document.getElementById('activityOptionThree');
 var activityOptionThreeCost = document.getElementById('activityOptionThreeCost');
-var endingCity = inputEndingCity.value;
-
 // Search Airport API
 // https://https://api-ninjas.com/api/airports
 function getSearchAirportApi(){
@@ -38,7 +36,7 @@ function getSearchAirportApi(){
             'X-RapidAPI-Host': 'airports-by-api-ninjas.p.rapidapi.com'
         }
     };
-    fetch('https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=' + endingCity, options)
+    fetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${inputEndingCity.value}`, options)
         .then(response => response.json())
         .then(function(dataEndingAirport){
             searchFunction(dataEndingAirport);
@@ -142,7 +140,7 @@ function getHotelApi(){
     
 
 
-    var getHotelStatus = "https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=" + inputEndingCity.value + "&search_type=HOTEL";
+    var getHotelStatus = "https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=$" + inputEndingCity.value + "&search_type=HOTEL";
 
     // fetch('https://world-airports-directory.p.rapidapi.com/v1/airports?page=1&sortBy=name%3Aasc&limit=20', options)
 
@@ -217,7 +215,7 @@ function getStartingAirportApi(){
             'X-RapidAPI-Host': 'airports-by-api-ninjas.p.rapidapi.com'
         }
     };
-    fetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${endingCity}`, options)
+    fetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${inputEndingCity.value}`, options)
 	    .then(response => response.json())
         .then(function(dataStartingAirport){
         console.log(dataStartingAirport);
