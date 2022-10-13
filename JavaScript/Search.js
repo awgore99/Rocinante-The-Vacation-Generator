@@ -44,22 +44,22 @@ function getSearchAirportApi(){
             
         })
         ;
-        window.location.href = 'https://awgore99.github.io/Rocinante-The-Vacation-Generator/Selections.html';
+        window.location.href = "./Selections.html";
     }
 
 function searchFunction(data){
-
+    console.log(data);
     for (i = 0; i < data.length; i++){
         let startingLoc = data[i];
         if (startingLoc){
-            localStorage.setItem('startingCity', inputStartingCity.value());
-            localStartingCity = inputStartingCity.value();
+            localStorage.setItem('startingCity', inputStartingCity.value);
+            localStartingCity = inputStartingCity.value;
             console.log(localStartingCity);
             for (i = 0; i < data.length; i++){
                 let endingLoc = data[i];
                 if (endingLoc){
-                    localStorage.setItem('endingCity', inputEndingCity.value());
-                    localEndingCity = inputEndingCity.value();
+                    localStorage.setItem('endingCity', inputEndingCity.value);
+                    localEndingCity = inputEndingCity.value;
                     console.log(localEndingCity);
                 }
                 else{
@@ -211,6 +211,7 @@ function getDistanceApi(){
 // Starting Airport API
 // https://rapidapi.com/karanp41-eRiF1pYLK1P/api/world-airports-directory/
 function getStartingAirportApi(startingCity){
+    console.log(startingCity);
     var options = {
         method: 'GET',
         headers: {
