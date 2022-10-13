@@ -27,6 +27,7 @@ var activityOptionTwoCost = document.getElementById('activityOptionTwoCost');
 var activityOptionThree = document.getElementById('activityOptionThree');
 var activityOptionThreeCost = document.getElementById('activityOptionThreeCost');
 
+
 // Search Airport API
 // https://https://api-ninjas.com/api/airports
 function getSearchAirportApi(){
@@ -45,6 +46,7 @@ function getSearchAirportApi(){
             
         })
         ;
+
 
         window.location.href = "./Selections.html";
     }
@@ -211,6 +213,7 @@ function getDistanceApi(){
 
 // Starting Airport API
 // https://rapidapi.com/karanp41-eRiF1pYLK1P/api/world-airports-directory/
+
 
 function getStartingAirportApi(startingCity){
     console.log(startingCity);
