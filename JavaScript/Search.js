@@ -118,7 +118,9 @@ var distanceContainer = document.getElementById("distance")
 
 var hotelOptionOne = document.getElementById("hotelOptionOne");
 
-var airportInfo = [];
+var startingAirportInfo = [];
+
+var endingAirportInfo = [];
 
 if(transitContainer){
     getStartingAirportApi(localStorage.getItem('startingCity'));
@@ -177,7 +179,7 @@ function getDistanceApi(){
         }
     };
     
-    fetch(`https://distance-calculator.p.rapidapi.com/distance/simple?lat_1=${airportInfo[2]}&long_1=${airportInfo[3]}&lat_2=${airportInfo[6]}&long_2=${airportInfo[7]}&unit=miles&decimal_places=2`, options)
+    fetch(`https://distance-calculator.p.rapidapi.com/distance/simple?lat_1=${startingAirportInfo[2]}&long_1=${startingAirportInfo[3]}&lat_2=${endingAirportInfo[2]}&long_2=${endingAirportInfo[3]}&unit=miles&decimal_places=2`, options)
         .then(response => response.json())
         .then(function(dataDistance){
             console.log(dataDistance);
@@ -207,7 +209,6 @@ function getDistanceApi(){
 
 
 function getStartingAirportApi(startingCity){
-    console.log(startingCity);
     var options = {
         method: 'GET',
         headers: {
@@ -227,17 +228,23 @@ function getStartingAirportApi(startingCity){
             var startingAirportLong = document.createElement("p");
             
             startingAirportName.textContent = response[i].name;
-            airportInfo[0] = (response[i].name);
+            startingAirportInfo[0] = (response[i].name);
             startingAirportCode.textContent = response[i].iata;
-            airportInfo[1] = (response[i].iata);
+            startingAirportInfo[1] = (response[i].iata);
             startingAirportLat.textContent = response[i].latitude;
-            airportInfo[2] = (response[i].latitude);
+            startingAirportInfo[2] = (response[i].latitude);
             startingAirportLong.textContent = response[i].longitude;
-            airportInfo[3] = (response[i].longitude);
+            startingAirportInfo[3] = (response[i].longitude);
             i = i + (response.length + 1);
             }
+            for (var j=0; j < startingAirportInfo.length; j++){
+                if (startingAirportInfo[j] === undefined){
+                    startingAirportInfo = startingAirportInfo.slice(0,j) + startingAirportInfo.slice(j+1,startingAirportInfo.length);
+                }
+            }
 
-
+            console.log(startingAirportInfo);
+            console.log(startingAirportInfo[2]);
             //startingAirportContainer.append(startingAirportName);
             //startingAirportContainer.append(startingAirportCode);
             //startingAirportContainer.append(startingAirportLat);
@@ -274,21 +281,26 @@ function getEndingAirportApi(endingCity){
         var endingAirportLong = document.createElement("p");
         
         endingAirportName.textContent = response[i].name;
-        airportInfo[4] = (response[i].name);
+        endingAirportInfo[0] = (response[i].name);
         endingAirportCode.textContent = response[i].iata;
-        airportInfo[5] = (response[i].iata);
+        endingAirportInfo[1] = (response[i].iata);
         endingAirportLat.textContent = response[i].latitude;
-        airportInfo[6] = (response[i].latitude);
+        endingAirportInfo[2] = (response[i].latitude);
         endingAirportLong.textContent = response[i].longitude;
-        airportInfo[7] = (response[i].longitude);
+        endingAirportInfo[3] = (response[i].longitude);
 
 
         //endingAirportContainer.append(endingAirportName);
         //endingAirportContainer.append(endingAirportCode);
         //endingAirportContainer.append(endingAirportLat);
         //endingAirportContainer.append(endingAirportLong);
-
-        console.log(airportInfo);
+        for (var j=0; j < endingAirportInfo.length; j++){
+            if (endingAirportInfo[j] === undefined){
+                endingAirportInfo = endingAirportInfo.slice(0,j) + endingAirportInfo.slice(j+1,endingAirportInfo.length);
+            }
+        }
+        console.log(endingAirportInfo);
+        console.log(endingAirportInfo[2]);
         i = i + (response.length + 1);
         }
     }
