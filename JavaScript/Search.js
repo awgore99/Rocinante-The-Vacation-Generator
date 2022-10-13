@@ -264,7 +264,7 @@ function getEndingAirportApi(endingCity){
         }
     };
   
-    fetchfetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${endingCity}`, options)
+    fetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${endingCity}`, options)
     .then(response => response.json())
     .then(function(dataEndingAirport){
    
