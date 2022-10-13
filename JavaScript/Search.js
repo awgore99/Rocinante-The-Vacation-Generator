@@ -44,11 +44,10 @@ function getSearchAirportApi(){
             searchFunction(dataEndingAirport);
             console.log(dataEndingAirport);
             
-        })
-        ;
+        });
 
 
-        window.location.href = "./Selections.html";
+        window.location.href = './Selections.html';
     }
 
 function searchFunction(data){
@@ -56,13 +55,13 @@ function searchFunction(data){
     for (i = 0; i < data.length; i++){
         let startingLoc = data[i];
         if (startingLoc){
-            localStorage.setItem('startingCity', inputStartingCity.value);
+            localStorage.setItem('startingCity', inputStartingCity.value());
             localStartingCity = inputStartingCity.value;
             console.log(localStartingCity);
             for (i = 0; i < data.length; i++){
                 let endingLoc = data[i];
                 if (endingLoc){
-                    localStorage.setItem('endingCity', inputEndingCity.value);
+                    localStorage.setItem('endingCity', inputEndingCity.value());
                     localEndingCity = inputEndingCity.value;
                     console.log(localEndingCity);
                 }
@@ -267,7 +266,7 @@ function getEndingAirportApi(endingCity){
     fetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${endingCity}`, options)
     .then(response => response.json())
     .then(function(dataEndingAirport){
-   
+    console.log(dataEndingAirport);
     for (var i=0; i<dataEndingAirport.length; i++){
         
         var endingAirportName = document.createElement("h3");
@@ -290,7 +289,7 @@ function getEndingAirportApi(endingCity){
         endingAirportContainer.append(endingAirportLat);
         endingAirportContainer.append(endingAirportLong);
 
-
+        console.log(airportInfo);
     }
 })
 .catch(err => console.error(err));
