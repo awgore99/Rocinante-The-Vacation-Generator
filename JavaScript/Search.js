@@ -52,13 +52,15 @@ function searchFunction(data){
     for (i = 0; i < data.length; i++){
         let startingLoc = data[i];
         if (startingLoc){
-            localStartingCity = inputStartingCity.value;
-            console.log(localStartingCity)
+            localStorage.setItem('startingCity', inputStartingCity.value());
+            localStartingCity = inputStartingCity.value();
+            console.log(localStartingCity);
             for (i = 0; i < data.length; i++){
                 let endingLoc = data[i];
                 if (endingLoc){
-                    localEndingCity = inputEndingCity.value;
-                    console.log(localEndingCity)
+                    localStorage.setItem('endingCity', inputEndingCity.value());
+                    localEndingCity = inputEndingCity.value();
+                    console.log(localEndingCity);
                 }
                 else{
                     window.alert("City does not exist, please try again");
@@ -115,8 +117,10 @@ var hotelOptionOne = document.getElementById("hotelOptionOne");
 var airportInfo = [[],[]];
 
 if(transitContainer){
-    getStartingAirportApi()
+    localStorage.getItem('startingCity');
+    getStartingAirportApi(startingCity)
     console.log(getStartingAirportApi());
+    localStorage.getItem('endingCity');
     getEndingAirportApi();
     console.log(getEndingAirportApi());
     getDistanceApi();
@@ -207,7 +211,7 @@ function getDistanceApi(){
 
 // Starting Airport API
 // https://rapidapi.com/karanp41-eRiF1pYLK1P/api/world-airports-directory/
-function getStartingAirportApi(){
+function getStartingAirportApi(startingCity){
     var options = {
         method: 'GET',
         headers: {
@@ -215,7 +219,7 @@ function getStartingAirportApi(){
             'X-RapidAPI-Host': 'airports-by-api-ninjas.p.rapidapi.com'
         }
     };
-    fetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${inputEndingCity.value()}`, options)
+    fetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${startingCity}`, options)
 	    .then(response => response.json())
         .then(function(dataStartingAirport){
         console.log(dataStartingAirport);
