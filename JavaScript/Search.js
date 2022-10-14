@@ -125,11 +125,12 @@ var startingLat;
 var startingLong;
 var endingLat;
 var endingLong;
+
+var totalDistance;
+
 if(transitContainer){
     getStartingAirportApi(localStorage.getItem('startingCity'));
     getEndingAirportApi(localStorage.getItem('endingCity'));
-    costToDrive(distanceContainer[0].value);
-    console.log(costToDrive);
 }
 
 // Hotel API
@@ -169,44 +170,6 @@ function getHotelApi(){
 
 // Distance API
 // https://rapidapi.com/ApiOcean/api/distance-calculator
-
-function getDistanceApi(){
-    console.log(startingLat);
-    console.log(startingLong);
-    console.log(endingLat);
-    console.log(endingLong);
-    var options = {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
-            'X-RapidAPI-Host': 'distance-calculator.p.rapidapi.com'
-        }
-    };
-    
-    fetch(`https://distance-calculator.p.rapidapi.com/distance/simple?lat_1=${startingLat}&long_1=${startingAirportInfo[3]}&lat_2=${endingAirportInfo[2]}&long_2=${endingAirportInfo[3]}&unit=miles&decimal_places=2`, options)
-        .then(response => response.json())
-        .then(function(dataDistance){
-            console.log(dataDistance);
-            for (var i=0; i<dataDistance.length; i++){
-                
-                var distance = document.createElement("p");
-                var distanceUnit = document.createElement("p");
-                
-
-
-                distance.textContent = dataDistance[i].distance;
-                distanceUnit.textContent = dataDistance[i].unit;
-    
-                distanceContainer.append(distance);
-                distanceContainer.append(distanceUnit);
-    
-            }
-        })
-        .catch(err => console.error(err));
-        window.location.href
-
-}
 
 
 // Starting Airport API
@@ -255,6 +218,7 @@ function getStartingAirportApi(startingCity){
 
         startingLat = startingAirportInfo[2];
         startingLong = startingAirportInfo[3];
+        console.log(startingLat);
         i = i + (response.length + 1);
         }
     }
@@ -318,6 +282,31 @@ function getEndingAirportApi(endingCity){
 
 
 
+function getDistanceApi(){
+    console.log(startingLat);
+    console.log(startingLong);
+    console.log(endingLat);
+    console.log(endingLong);
+    var options = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
+            'X-RapidAPI-Host': 'distance-calculator.p.rapidapi.com'
+        }
+    };
+    
+    fetch(`https://distance-calculator.p.rapidapi.com/distance/simple?lat_1=${startingLat}&long_1=${startingAirportInfo[3]}&lat_2=${endingAirportInfo[2]}&long_2=${endingAirportInfo[3]}&unit=miles&decimal_places=2`, options)
+        .then(response => response.json())
+        .then(function(response){
+            console.log(response);
+            totalDistance = response.distance;
+
+            costToDrive(totalDistance);
+            costToFly(totalDistance);
+
+})
+}
 
 
 
@@ -511,12 +500,11 @@ fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${inputEndingCity.va
 function costToFly(length){
     var distance = (length * 0.13) + 100;
     console.log(distance);
-    flyingCost.append(distance);
     return distance;
 }
 
 function costToDrive(length){
     var driveDistance = ((length/23)*3.3);
-    drivingCost.append(driveDistance);
+    console.log(driveDistance);
 }
 
