@@ -118,12 +118,16 @@ var distanceContainer = document.getElementById("distance")
 
 var hotelOptionOne = document.getElementById("hotelOptionOne");
 
-var airportInfo = [];
+var startingAirportInfo = [];
 
+var endingAirportInfo = [];
+var startingLat;
+var startingLong;
+var endingLat;
+var endingLong;
 if(transitContainer){
     getStartingAirportApi(localStorage.getItem('startingCity'));
     getEndingAirportApi(localStorage.getItem('endingCity'));
-    getDistanceApi();
     costToDrive(distanceContainer[0].value);
     console.log(costToDrive);
 }
@@ -167,7 +171,10 @@ function getHotelApi(){
 // https://rapidapi.com/ApiOcean/api/distance-calculator
 
 function getDistanceApi(){
-
+    console.log(startingLat);
+    console.log(startingLong);
+    console.log(endingLat);
+    console.log(endingLong);
     var options = {
         method: 'GET',
         headers: {
@@ -177,7 +184,7 @@ function getDistanceApi(){
         }
     };
     
-    fetch(`https://distance-calculator.p.rapidapi.com/distance/simple?lat_1=${airportInfo[2]}&long_1=${airportInfo[3]}&lat_2=${airportInfo[6]}&long_2=${airportInfo[7]}&unit=miles&decimal_places=2`, options)
+    fetch(`https://distance-calculator.p.rapidapi.com/distance/simple?lat_1=${startingLat}&long_1=${startingAirportInfo[3]}&lat_2=${endingAirportInfo[2]}&long_2=${endingAirportInfo[3]}&unit=miles&decimal_places=2`, options)
         .then(response => response.json())
         .then(function(dataDistance){
             console.log(dataDistance);
@@ -207,7 +214,6 @@ function getDistanceApi(){
 
 
 function getStartingAirportApi(startingCity){
-    console.log(startingCity);
     var options = {
         method: 'GET',
         headers: {
@@ -215,38 +221,45 @@ function getStartingAirportApi(startingCity){
             'X-RapidAPI-Host': 'airports-by-api-ninjas.p.rapidapi.com'
         }
     };
+  
     fetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${startingCity}`, options)
-	    .then(response => response.json())
-        .then(function(response){
-        console.log(response);
-        for (var i=0; i<response.length; i++){
-            if(response[i].iata != ""){
-            var startingAirportName = document.createElement("h3");
-            var startingAirportCode = document.createElement("p");
-            var startingAirportLat = document.createElement("p");
-            var startingAirportLong = document.createElement("p");
-            
-            startingAirportName.textContent = response[i].name;
-            airportInfo[0] = (response[i].name);
-            startingAirportCode.textContent = response[i].iata;
-            airportInfo[1] = (response[i].iata);
-            startingAirportLat.textContent = response[i].latitude;
-            airportInfo[2] = (response[i].latitude);
-            startingAirportLong.textContent = response[i].longitude;
-            airportInfo[3] = (response[i].longitude);
-            i = i + (response.length + 1);
+    .then(response => response.json())
+    .then(function(response){
+    for (var i=0; i<response.length; i++){
+        if(response[i].iata != ""){
+        var startingAirportName = document.createElement("h3");
+        var startingAirportCode = document.createElement("p");
+        var startingAirportLat = document.createElement("p");
+        var startingAirportLong = document.createElement("p");
+        
+        startingAirportName.textContent = response[i].name;
+        startingAirportInfo[0] = (response[i].name);
+        startingAirportCode.textContent = response[i].iata;
+        startingAirportInfo[1] = (response[i].iata);
+        startingAirportLat.textContent = response[i].latitude;
+        startingAirportInfo[2] = (response[i].latitude);
+        startingAirportLong.textContent = response[i].longitude;
+        startingAirportInfo[3] = (response[i].longitude);
+
+
+        //endingAirportContainer.append(endingAirportName);
+        //endingAirportContainer.append(endingAirportCode);
+        //endingAirportContainer.append(endingAirportLat);
+        //endingAirportContainer.append(endingAirportLong);
+        for (var j=0; j < startingAirportInfo.length; j++){
+            if (startingAirportInfo[j] === undefined){
+                startingAirportInfo = startingAirportInfo.slice(0,j) + startingAirportInfo.slice(j+1,startingAirportInfo.length);
             }
-
-
-            //startingAirportContainer.append(startingAirportName);
-            //startingAirportContainer.append(startingAirportCode);
-            //startingAirportContainer.append(startingAirportLat);
-            //startingAirportContainer.append(startingAirportLong);
-
-
         }
-    })
-	.catch(err => console.error(err));
+        console.log(startingAirportInfo);
+
+        startingLat = startingAirportInfo[2];
+        startingLong = startingAirportInfo[3];
+        i = i + (response.length + 1);
+        }
+    }
+})
+.catch(err => console.error(err));
 }
 
 
@@ -265,7 +278,6 @@ function getEndingAirportApi(endingCity){
     fetch(`https://airports-by-api-ninjas.p.rapidapi.com/v1/airports?city=${endingCity}`, options)
     .then(response => response.json())
     .then(function(response){
-    console.log(response);
     for (var i=0; i<response.length; i++){
         if(response[i].iata != ""){
         var endingAirportName = document.createElement("h3");
@@ -274,24 +286,30 @@ function getEndingAirportApi(endingCity){
         var endingAirportLong = document.createElement("p");
         
         endingAirportName.textContent = response[i].name;
-        airportInfo[4] = (response[i].name);
+        endingAirportInfo[0] = (response[i].name);
         endingAirportCode.textContent = response[i].iata;
-        airportInfo[5] = (response[i].iata);
+        endingAirportInfo[1] = (response[i].iata);
         endingAirportLat.textContent = response[i].latitude;
-        airportInfo[6] = (response[i].latitude);
+        endingAirportInfo[2] = (response[i].latitude);
         endingAirportLong.textContent = response[i].longitude;
-        airportInfo[7] = (response[i].longitude);
+        endingAirportInfo[3] = (response[i].longitude);
 
 
         //endingAirportContainer.append(endingAirportName);
         //endingAirportContainer.append(endingAirportCode);
         //endingAirportContainer.append(endingAirportLat);
         //endingAirportContainer.append(endingAirportLong);
-
-        console.log(airportInfo);
+        for (var j=0; j < endingAirportInfo.length; j++){
+            if (endingAirportInfo[j] === undefined){
+                endingAirportInfo = endingAirportInfo.slice(0,j) + endingAirportInfo.slice(j+1,endingAirportInfo.length);
+            }
+        }
+        endingLat = endingAirportInfo[2];
+        endingLong = endingAirportInfo[3];
         i = i + (response.length + 1);
         }
     }
+    getDistanceApi();
 })
 .catch(err => console.error(err));
 }
