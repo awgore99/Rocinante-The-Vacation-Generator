@@ -9,6 +9,8 @@ var inputEndingCity = document.getElementById('endingSearch');
 var inputStartingCity = document.getElementById('startingSearch');
 var tripLength = document.getElementById('lengthOfStay');
 var fetchButton = document.querySelector('#searchSubmitButton');
+var checkInDate = moment().add(30, 'days').format('YYYY-MM-DD');
+var checkOutDate = moment().add(30 + tripLength, 'days').format('YYYY-MM-DD'); 
 
 var Fly = document.getElementById('Fly');
 var Drive = document.getElementById('Drive');
@@ -227,8 +229,10 @@ function getEndingAirportApi(endingCity){
         endingAirportInfo[1] = (response[i].iata);
         endingAirportLat.textContent = response[i].latitude;
         endingAirportInfo[2] = (response[i].latitude);
+        localStorage.setItem('endingLat', response[i].latitude);
         endingAirportLong.textContent = response[i].longitude;
         endingAirportInfo[3] = (response[i].longitude);
+        localStorage.setItem('endingLong', response[i].longitude);
 
 
         //endingAirportContainer.append(endingAirportName);
@@ -292,28 +296,21 @@ function getHotelApi(endingCity){
          method: 'GET',
          headers: {
              'X-RapidAPI-Key': '46e7505e3dmsh6a226f5ed56d4e4p148738jsnfd3fe16a8db6',
-             'X-RapidAPI-Host': 'priceline-com-provider.p.rapidapi.com'
+             'X-RapidAPI-Host': 'hotels-com-provider.p.rapidapi.com'
          }
      };
  
-     fetch(`https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=${endingCity}&search_type=HOTEL`, options)
+     fetch(`https://hotels-com-provider.p.rapidapi.com/v1/hotels/nearby?latitude=${localStorage.getItem('endingLat')}&currency=USD&longitude=${localStorage.getItem('endingLong')}&checkout_date=${checkOutDate}&sort_order=BEST_SELLER&checkin_date=${checkInDate}&adults_number=1&locale=en_US&guest_rating_min=4&star_rating_ids=3%2C4%2C5&page_number=1&price_min=10&accommodation_ids=20%2C8%2C15%2C5%2C1&price_max=500&amenity_ids=527%2C2063`, options)
  
          .then(response => response.json())
          .then(function(dataHotel){
-             console.log(dataHotel);
-             for (var i=0; i<dataHotel.length; i++){
-                 
-                 var hotelName = document.createElement("h3");
-                 var hotelAddress = document.createElement("p");
-                 
-                 hotelName.textContent = dataHotel[i].object[i].itemName;
-                 hotelAddress.textContent = dataHotel[i].object[i].address;
- 
-                 hotelContainer.append(hotelName);
-                 hotelContainer.append(hotelAddress);
- 
-                 console.log(hotelName);
-             }
+            console.log(dataHotel);
+            let hotelOne = dataHotel.searchResults.results[0].name;
+            hotelOptionOne.append(hotelOne);
+            let hotelTwo = dataHotel.searchResults.results[1].name;
+            hotelOptionTwo.append(hotelTwo);
+            let hotelThree = dataHotel.searchResults.results[2].name;
+            hotelOptionThree.append(hotelThree);
          })
          // .catch(err => console.error(err));
  }
