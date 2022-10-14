@@ -18,6 +18,6 @@ THEN I am shown an itenerary with a summary of the selected data
 
 ## Links
 Repo Link: https://github.com/awgore99/Rocinante-The-Vacation-Generator
-Deployed Application Link: https://awgore99.github.io/Rocinante-The-Vacation-Generator/
+Deployed Application Link: https://awgore99.github.io/Rocinante-The-Vacation-Generator/Results.html
 Presentation Link: https://prezi.com/view/UrBt7GInnoexQwkmgpCV/
 Data Flow Link: https://docs.google.com/document/d/1GVr1kOPW5yIYgxPK68btRs2S7Ly73ZQGUcfZoJdXsSA/edit?usp=sharing
