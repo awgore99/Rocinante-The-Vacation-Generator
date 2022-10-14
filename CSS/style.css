@@ -27,7 +27,14 @@ h2{
     color: var(--light);   
     background-color: var(--grayblue);
     border: solid 4px var(--darkbrown);
-}    
+}  
+
+#estimatedCost{
+    font-family: 'Neucha', cursive;
+    color: var(--light);   
+    background-color: var(--grayblue);
+    border: solid 4px var(--darkbrown);    
+}
 
 h4{
     font-family: 'Neucha', cursive;
@@ -35,8 +42,12 @@ h4{
     font-size: 30px;        
 }
 
-#header-text{
+#header-top{
     font-size: 30px;
+}
+
+#header-middle{
+    font-size: 60px;
 }
 
 #list-text{
