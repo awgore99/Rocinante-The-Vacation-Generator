@@ -399,7 +399,7 @@ function getHotelPriceApi(hotel_ID){
         .then(response => response.json())
         .then(function(dataHotelPrice){
             console.log(dataHotelPrice);
-            hotelCost = dataHotelPrice.featuredPrice.currentPrice.plain
+            hotelCost = dataHotelPrice.featuredPrice.currentPrice.plain;
             return hotelCost;
         })
         .catch(err => console.error(err));
