@@ -253,6 +253,7 @@ function getEndingAirportApi(endingCity){
         }
     }
     getDistanceApi();
+    getActivityApi();
 })
 .catch(err => console.error(err));
 }
@@ -423,23 +424,19 @@ var options = {
 		'X-RapidAPI-Host': 'travel-places.p.rapidapi.com'
 	},
 
-	body: `{"query":"{ getPlaces(categories:[\"NATURE\"],lat:${airportInfo[1][2]},lng:${airportInfo[1][3]},maxDistMeters:50000) { name,lat,lng,abstract,distance,categories } }"}`
+	body: `{"query":"{ getPlaces(categories:[\"NATURE\"],lat:${endingLat},lng:${endingLong},maxDistMeters:50000) { name,lat,lng,abstract,distance,categories } }"}`
 };
 
 fetch('https://travel-places.p.rapidapi.com/', options)
 	.then(response => response.json())
 	.then(function(dataActivity){
         console.log(dataActivity);
-        for (var i=0; i<dataActivity.length; i++){
-            
-            var activityName = document.createElement("h3");
-            var activityTag = document.createElement("p");
-            
-            activityName.textContent = dataActivity[i].data.getPlaces[i].name;
-            activityTag.textContent = dataActivity[i].data.getPlaces[i].categories.object[i];
-            activityContainer.append(activityName);
-            activityContainer.append(activityTag);
-        }
+        activityOne = dataActivity[0].data.getPlaces[0].name;
+        activityTwo = dataActivity[0].data.getPlaces[i].name;
+        activityThree = dataActivity[i].data.getPlaces[i].name;
+        activityOptionOne.append(activityOne);
+        activityOptionTwo.append(activityTwo);
+        activityOptionThree.append(activityThree);
     })
     .catch(err => console.error(err));
 
