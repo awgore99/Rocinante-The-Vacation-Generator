@@ -31,6 +31,7 @@ var activityOptionThreeCost = document.getElementById('activityOptionThreeCost')
 var finalTransportationSelection = document.getElementById("finalTransportationSelection");
 var finalHotelSelection = document.getElementById("finalHotelSelection");
 var finalActivitySelection = document.getElementById("finalActivitySelection");
+var estimatedCost = document.getElementById("estimatedCost");
 
 // Search Airport API
 // https://https://api-ninjas.com/api/airports
