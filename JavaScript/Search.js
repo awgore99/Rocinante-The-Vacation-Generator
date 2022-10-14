@@ -535,3 +535,22 @@ function costToDrive(length){
     var driveDistance = ((length/23)*3.3);
     drivingCost.append(driveDistance);
 }
+
+function getHotelCost (tripLength, hotelOne){
+    hotelCost = tripLength*hotelOne*(document.ratesSummary.minPrice); 
+    hotelOptionOneCost.append(hotelCost);
+}
+
+function getHotelCostOne (lengthOfStay){
+    hotelCost = lengthOfStay*(dataHotelPrice.featuredPrice.currentPrice.plain);
+    hotelCost.append(hotelOptionOneCost);
+}
+function getHotelCostTwo (lengthOfStay){
+    hotelCost = lengthOfStay*(dataHotelPrice.featuredPrice.currentPrice.plain);
+    hotelCostTwo.append(hotelOptionTwoCost);
+}
+
+function getHotelCostThree (lengthOfStay){
+    hotelCostThree = lengthOfStay*(dataHotelPrice.featuredPrice.currentPrice.plain);
+    hotelCostThree.append(hotelOptionThreeCost);
+}
