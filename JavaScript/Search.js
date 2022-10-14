@@ -500,11 +500,12 @@ fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${inputEndingCity.va
 function costToFly(length){
     var distance = (length * 0.13) + 100;
     console.log(distance);
-    return distance;
+    flyingCost.append(distance);
 }
 
 function costToDrive(length){
     var driveDistance = ((length/23)*3.3);
     console.log(driveDistance);
+    drivingCost.append(driveDistance);
 }
 
