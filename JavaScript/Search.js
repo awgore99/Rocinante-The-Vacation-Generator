@@ -132,41 +132,13 @@ if(transitContainer){
     getStartingAirportApi(localStorage.getItem('startingCity'));
     getEndingAirportApi(localStorage.getItem('endingCity'));
 }
+if(hotelOptionOne){
+    getHotelApi(localStorage.getItem('endingCity'));
+}
 
 // Hotel API
 // https://rapidapi.com/tipsters/api/priceline-com-provider/
 
-function getHotelApi(){
-   
-   var options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Key': '46e7505e3dmsh6a226f5ed56d4e4p148738jsnfd3fe16a8db6',
-            'X-RapidAPI-Host': 'priceline-com-provider.p.rapidapi.com'
-        }
-    };
-
-    fetch(`https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=${inputEndingCity.value}&search_type=HOTEL`, options)
-
-        .then(response => response.json())
-        .then(function(dataHotel){
-            console.log(dataHotel);
-            for (var i=0; i<dataHotel.length; i++){
-                
-                var hotelName = document.createElement("h3");
-                var hotelAddress = document.createElement("p");
-                
-                hotelName.textContent = dataHotel[i].object[i].itemName;
-                hotelAddress.textContent = dataHotel[i].object[i].address;
-
-                hotelContainer.append(hotelName);
-                hotelContainer.append(hotelAddress);
-
-                console.log(hotelName);
-            }
-        })
-        // .catch(err => console.error(err));
-}
 
 // Distance API
 // https://rapidapi.com/ApiOcean/api/distance-calculator
@@ -304,6 +276,7 @@ function getDistanceApi(){
 
             costToDrive(totalDistance);
             costToFly(totalDistance);
+            getHotelApi()
 
 })
 }
@@ -313,9 +286,37 @@ function getDistanceApi(){
 
 
 
-
-
-
+function getHotelApi(endingCity){
+   
+    var options = {
+         method: 'GET',
+         headers: {
+             'X-RapidAPI-Key': '46e7505e3dmsh6a226f5ed56d4e4p148738jsnfd3fe16a8db6',
+             'X-RapidAPI-Host': 'priceline-com-provider.p.rapidapi.com'
+         }
+     };
+ 
+     fetch(`https://priceline-com-provider.p.rapidapi.com/v1/hotels/locations?name=${endingCity}&search_type=HOTEL`, options)
+ 
+         .then(response => response.json())
+         .then(function(dataHotel){
+             console.log(dataHotel);
+             for (var i=0; i<dataHotel.length; i++){
+                 
+                 var hotelName = document.createElement("h3");
+                 var hotelAddress = document.createElement("p");
+                 
+                 hotelName.textContent = dataHotel[i].object[i].itemName;
+                 hotelAddress.textContent = dataHotel[i].object[i].address;
+ 
+                 hotelContainer.append(hotelName);
+                 hotelContainer.append(hotelAddress);
+ 
+                 console.log(hotelName);
+             }
+         })
+         // .catch(err => console.error(err));
+ }
 
 
 
@@ -375,6 +376,33 @@ function getDistanceApi(){
 
 
 
+//getHotelApi();
+//function getHotelPriceApi(){
+    //var options = {
+        //method: 'GET',
+        //headers: {
+            //'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
+            //'X-RapidAPI-Host': 'priceline-com-provider.p.rapidapi.com'
+       // }
+   // };
+   // fetch(`https://priceline-com-provider.p.rapidapi.com/v1/hotels/booking-details?date_checkout=${timeNow}&date_checkin=${timeNow_}&hotel_id=${hotelContainer[2].value}&rooms_number=1`, options)
+        //.then(response => response.json())
+        //.then(function(dataHotelPrice){
+           // console.log(dataHotelPrice);
+           // for (var i=0; i<dataHotelPrice.length; i++){
+               // var hotelPrice = document.createElement("p");
+              //  var hotelStar = document.createElement("p");
+              //  var hotelRating = document.createElement("p");
+              //  hotelPrice.textContent = dataHotel[i].bookings.offerPrice;
+               // hotelStar.textContent = dataHotel[i].starRating;
+              // hotelRating.textContent = dataHotel[i].overallGuestRating;
+               // hotelContainer.append(hotelPrice);
+              //  hotelContainer.append(hotelStar);
+              //  hotelContainer.append(hotelRating);
+           // }
+       // })
+      //  .catch(err => console.error(err));
+//}
 
 
 
@@ -499,13 +527,11 @@ fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${inputEndingCity.va
 
 function costToFly(length){
     var distance = (length * 0.13) + 100;
-    console.log(distance);
     flyingCost.append(distance);
 }
 
 function costToDrive(length){
     var driveDistance = ((length/23)*3.3);
-    console.log(driveDistance);
     drivingCost.append(driveDistance);
 }
 
