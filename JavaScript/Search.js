@@ -132,7 +132,7 @@ var endingLat;
 var endingLong;
 
 var totalDistance;
-
+var hotelID = [];
 if(transitContainer){
     getStartingAirportApi(localStorage.getItem('startingCity'));
     getEndingAirportApi(localStorage.getItem('endingCity'));
@@ -314,8 +314,18 @@ function getHotelApi(endingCity){
             hotelOptionTwo.append(hotelTwo);
             let hotelThree = dataHotel.searchResults.results[2].name;
             hotelOptionThree.append(hotelThree);
+            hotelIDOne = dataHotel.searchResults.results[0].id;
+            hotelIDTwo = dataHotel.searchResults.results[1].id;
+            hotelIDThree = dataHotel.searchResults.results[2].id;
+            var hotelCostOne = getHotelPriceApi(hotelIDOne);
+            console.log(hotelIDTwo);
+            var hotelCostTwo = getHotelPriceApi(hotelIDTwo);
+            var hotelCostThree = getHotelPriceApi(hotelIDThree);
+            hotelOptionOneCost.append(hotelCostOne);
+            hotelOptionTwoCost.append(hotelCostTwo);
+            hotelOptionThreeCost.append(hotelCostThree);
          })
-         // .catch(err => console.error(err));
+         //.catch(err => console.error(err));
  }
 
 
@@ -376,33 +386,24 @@ function getHotelApi(endingCity){
 
 
 
-//getHotelApi();
-//function getHotelPriceApi(){
-    //var options = {
-        //method: 'GET',
-        //headers: {
-            //'X-RapidAPI-Key': 'cecc5c6906msh1af22ff87f0f34ap105724jsn22ee0fec224a',
-            //'X-RapidAPI-Host': 'priceline-com-provider.p.rapidapi.com'
-       // }
-   // };
-   // fetch(`https://priceline-com-provider.p.rapidapi.com/v1/hotels/booking-details?date_checkout=${timeNow}&date_checkin=${timeNow_}&hotel_id=${hotelContainer[2].value}&rooms_number=1`, options)
-        //.then(response => response.json())
-        //.then(function(dataHotelPrice){
-           // console.log(dataHotelPrice);
-           // for (var i=0; i<dataHotelPrice.length; i++){
-               // var hotelPrice = document.createElement("p");
-              //  var hotelStar = document.createElement("p");
-              //  var hotelRating = document.createElement("p");
-              //  hotelPrice.textContent = dataHotel[i].bookings.offerPrice;
-               // hotelStar.textContent = dataHotel[i].starRating;
-              // hotelRating.textContent = dataHotel[i].overallGuestRating;
-               // hotelContainer.append(hotelPrice);
-              //  hotelContainer.append(hotelStar);
-              //  hotelContainer.append(hotelRating);
-           // }
-       // })
-      //  .catch(err => console.error(err));
-//}
+
+function getHotelPriceApi(hotel_ID){
+    var options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '46e7505e3dmsh6a226f5ed56d4e4p148738jsnfd3fe16a8db6',
+            'X-RapidAPI-Host': 'hotels-com-provider.p.rapidapi.com'
+        }
+    };
+    fetch(`https://hotels-com-provider.p.rapidapi.com/v1/hotels/booking-details?adults_number=1&checkin_date=${checkInDate}&locale=en_US&currency=USD&hotel_id=${hotel_ID}&checkout_date=${checkOutDate}`, options)
+        .then(response => response.json())
+        .then(function(dataHotelPrice){
+            console.log(dataHotelPrice);
+            hotelCost = dataHotelPrice.featuredPrice.currentPrice.plain
+            return hotelCost;
+        })
+        .catch(err => console.error(err));
+}
 
 
 
