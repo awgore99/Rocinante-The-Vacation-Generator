@@ -534,4 +534,3 @@ function costToDrive(length){
     var driveDistance = ((length/23)*3.3);
     drivingCost.append(driveDistance);
 }
-
