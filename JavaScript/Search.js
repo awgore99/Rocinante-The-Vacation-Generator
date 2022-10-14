@@ -28,7 +28,9 @@ var activityOptionTwo = document.getElementById('activityOptionTwo');
 var activityOptionTwoCost = document.getElementById('activityOptionTwoCost');
 var activityOptionThree = document.getElementById('activityOptionThree');
 var activityOptionThreeCost = document.getElementById('activityOptionThreeCost');
-
+var finalTransportationSelection = document.getElementById("finalTransportationSelection");
+var finalHotelSelection = document.getElementById("finalHotelSelection");
+var finalActivitySelection = document.getElementById("finalActivitySelection");
 
 // Search Airport API
 // https://https://api-ninjas.com/api/airports
